@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fuel Mileage Tracker v2</title>
     <link rel="icon" href="assets/favicon.ico">
-        <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
     <link rel="apple-touch-icon" href="assets/fuel.jpg">
+    <link rel="icon" href="assets/fuel.jpg">
+    <link rel="apple-touch-icon" href="assets/favicon.png">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -309,7 +312,7 @@
                                 <p id="last-odo-display" class="mt-1.5 text-xs font-semibold text-primary text-right"></p>
                             </div>
                         </div>
-                         
+                          
                         <div>
                             <label for="amount-paid" class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-1.5 ml-1">Amount Paid</label>
                             <div class="relative">
@@ -529,8 +532,9 @@
         const db = getFirestore(app);
         
         // --- GOOGLE SHEETS INTEGRATION ---
-        const GOOGLE_SHEETS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzTjdpGeWhrBC2Am3tyHJgPUM4EgpglEVJJsUa7G5TZu29GQVpMNQa4PObExg_ipSLHxQ/exec'; 
+        const GOOGLE_SHEETS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwi3SWXASIrtxfZ4CT4z1iZga02tyXzwe4JnD3m5RylfDBa5dXyxtDsI93OtBfm7S0nAg/exec'; 
 
+        
         // --- STATE & VARS ---
         let deferredPrompt; 
         let mileageChartInstance = null;
@@ -1031,7 +1035,7 @@
                     `<span class="font-semibold text-slate-700">${dateDisplay}</span>`, 
                     trip.odo.toFixed(0),
                     distanceDisplay,
-                    `<span class="font-medium text-slate-900">$${trip.amount.toFixed(0)}</span>`,
+                    `<span class="font-medium text-slate-900">₹${trip.amount.toFixed(0)}</span>`,
                     trip.liters.toFixed(1),
                     `<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">${mileageDisplay}</span>`
                 ];

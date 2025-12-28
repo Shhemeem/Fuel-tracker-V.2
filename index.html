@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuel Mileage Tracker v2</title>
+    <link rel="icon" href="assets/favicon.ico">
+    <!-- PWA & Icon Setup START -->
+    <meta name="theme-color" content="#4F46E5">
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzQwMzBiOCIgZD0iTTEyIDJjNS41MjMgMCAxMCA0LjQ3NyAxMCAxMGMwIDUuNTIzLTQuNDc3IDEwLTEwIDEwUzIgMTcuNTIzIDIgMTJhMTAgMTAgMCAwMS02IDMuNTE4bDYuMDI2LTkuNjUyQzcuNTc4IDMuMTI1IDkuNjI3IDIgMTIgMnptLTIuNjMzIDEwLjczN2MtLjY3Ni4zMTctMS4yMTMtLjE0My0xLjAxLS44NjlMNy40NSAzLjI2NGMuMjAzLS43MjcuOTgtMS4wODUgMS43MDYtLjg4M2wxLjU1OC40MzJjLS45NDQuNjgyLTEuNjUzIDEuNTEyLTEuNjUzIDIuMzQ5LS4wMDEuMjg1LjA1NS41NTguMTU5LjgwN2wuODkxIDEuMjM1Yy0uOTgzLjU4NS0xLjY0NyAxLjk3Mi0xLjY0NyAzLjUzNCAwIC4yODkuMDYzLjU1OC4xNzYuODA4bC0uODQyLjU1NyAyLjM0NSAyLjkxNi40NjctLjM3djIuOTIyaDJ2LTIuOTIybC40NjcuMzY5IDIuMzQ1LTIuOTE2LS44NDItLjU1N2MuMTEzLS4yNS4xNzYtLjUxOS4xNzYtLjgwOCAwLTEuNTYyLS42NjQtMi45NDktMS42NDctMy41MzVsLjg5MS0xLjIzNWMuMTA0LS4yNDkuMTU5LS41Mi4xNTktLjgwNyAwLS44MzctLjcxLTEuNjY3LTEuNjU1LTIuMzQ5bDEuNTU9LS40MzJjLjczLS4yMDEgMS41MDktLjE2NyAxLjcxMS41NjJsLS43MDMgMi41NTljLjIwMy43MjYtLjMyOCAxLjE4Ni0xLjAxLjg2OWwtLjQzMi0uNDEzYy0uMTg4LS4xOC0uMzM5LS4zMTQtLjQ1NC0uNDQ1LS42NjkuNDY4LTEuMjI3LjcyNy0xLjU1OC43MjctLjA3IDAtLjE0LS4wMjQtLjIwNC0uMDc0bC0uNDczLS4zODItLjQ4LjM4Mi0uNDctLjA2N3oiLz48L3N2Zy4+" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzQwMzBiOCIgZD0iTTEyIDJjNS41MjMgMCAxMCA0LjQ3NyAxMCAxMGMwIDUuNTIzLTQuNDc3IDEwLTEwIDEwUzIgMTcuNTIzIDIgMTJhMTAgMTAgMCAwMS02IDMuNTE4bDYuMDI2LTkuNjUyQzcuNTc4IDMuMTI1IDkuNjI3IDIgMTIgMnptLTIuNjMzIDEwLjczN2MtLjY3Ni4zMTctMS4yMTMtLjE0My0xLjAxLS44NjlMNy40NSAzLjI2NGMuMjAzLS43MjcuOTgtMS4wODUgMS43MDYtLjg4M2wxLjU1OC40MzJjLS45NDQuNjgyLTEuNjUzIDEuNTEyLTEuNjUzIDIuMzQ5LS4wMDEuMjg1LjA1NS41NTguMTU5LjgwN2wuODkxIDEuMjM1Yy0uOTgzLjU4NS0xLjY0NyAxLjk3Mi0xLjY0NyAzLjUzNCAwIC4yODkuMDYzLjU1OC4xNzYuODA4bC0uODQyLjU1NyAyLjM0NSAyLjkxNi40NjctLjM3djIuOTIyaDJ2LTIuOTIybC40NjcuMzY5IDIuMzQ1LTIuOTE2LS44NDItLjU1N2MuMTEzLS4yNS4xNzYtLjUxOS4xNzYtLjgwOCAwLTEuNTYyLS42NjQtMi45NDktMS42NDctMy41MzVsLjg5MS0xLjIzNWMuMTA0LS4yNDkuMTU5LS41Mi4xNTktLjgwNyAwLS44MzctLjcxLTEuNjY3LTEuNjU1LTIuMzQ5bDEuNTU9LS40MzJjLjczLS4yMDEgMS41MDktLjE2NyAxLjcxMS41NjJsLS43MDMgMi41NTljLjIwMy43MjYtLjMyOCAxLjE4Ni0xLjAxLjg2OWwtLjQzMi0uNDEzYy0uMTg4LS4xOC0uMzM5LS4zMTQtLjQ1NC0uNDQ1LS42NjkuNDY4LTEuMjI3LjcyNy0xLjU1OC43MjctLjA3IDAtLjE0LS4wMjQtLjIwNC0uMDc0bC0uNDczLS4zODItLjQ4LjM4Mi0uNDctLjA2N3oiLz48L3N2Zy4+" />
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIk1pbGVhZ2UgTWFuYWdlciIsCiAgInNob3J0X25hbWUiOiAiRnVlbCBMb2ciLAogICJzdGFydF91cmwiOiAiLi8iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiNGM0Y0RjYiLAogICJ0aGVtZV9jb2xvciI6ICIjNEY0NkU1IiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSFN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzQwMzBiOCIgZD0iTTEyIDJjNS41MjMgMCAxMCA0LjQ3NyAxMCAxMGMwIDUuNTIzLTQuNDc3IDEwLTEwIDEwUzIgMTcuNTIzIDIgMTJhMTAgMTAgMCAwMS02IDMuNSIgIHN0eWxlPSJmaWxsOiNmYmEzMzYiLz48cGF0aCBkPSJtMTYgMTdjMCAyLjIgMCA0IDAgNCAyLjIgMCA0IDAgNCAwLTQuNSAwLTggMC04LTQuNSAwLTggMC04IDAgNC41IDAgOCIgLz48L3N2Zy4+IiwKICAgICAgInNpemVzIjogIjE5MngxOTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0KfQo=">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!-- PWA & Icon Setup END -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#4F46E5', // Indigo 600
+                        'secondary': '#10B981', // Emerald 500
+                        'dark-bg': '#1F2937', // Gray 800
+                        'light-card': '#F9FAFB', // Gray 50
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F3F4F6; /* Gray 100 */
+        }
+        /* Custom scrollbar for log table */
+        #trip-log-table-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        #trip-log-table-container::-webkit-scrollbar-thumb {
+            background: #9CA3AF;
+            border-radius: 4px;
+        }
+        #trip-log-table-container::-webkit-scrollbar-track {
+            background: #E5E7EB;
+        }
+        .loading-overlay {
+            background-color: rgba(255,255,255,0.7);
+            backdrop-filter: blur(2px);
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-10">
+
+    <!-- SETUP HELP MODAL -->
+    <div id="setup-modal" class="fixed inset-0 bg-black/80 z-[110] hidden flex flex-col items-center justify-center p-6 backdrop-blur-sm">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-lg w-full text-left space-y-6 border border-gray-100 relative">
+            <button id="close-setup-btn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+            
+            <div class="flex items-center space-x-3 text-red-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                <h2 class="text-2xl font-bold">Connection Issue Detected</h2>
+            </div>
+            
+            <p class="text-gray-600">The app cannot save data. This usually means the <b>Firestore Database</b> has not been created in your Firebase Console yet.</p>
+            
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 text-sm space-y-3">
+                <h3 class="font-bold text-gray-800">How to Fix (Required):</h3>
+                <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                    <li>Go to the <a href="https://console.firebase.google.com/" target="_blank" class="text-primary underline font-medium">Firebase Console</a>.</li>
+                    <li>Select your project <b>(milege-track)</b>.</li>
+                    <li>In the left menu, click <b>Build</b> -> <b>Firestore Database</b>.</li>
+                    <li>Click the <b>Create Database</b> button.</li>
+                    <li>Select a location (e.g., <i>nam5 (us-central)</i>) and click Next.</li>
+                    <li><b>IMPORTANT:</b> Choose <b>Start in test mode</b> (allows read/write).</li>
+                    <li>Click <b>Create</b>.</li>
+                </ol>
+            </div>
+            
+            <button id="retry-connection-btn" class="w-full py-3 bg-primary text-white rounded-lg font-bold hover:bg-indigo-700 transition shadow-lg">
+                I've Done This - Retry Connection
+            </button>
+        </div>
+    </div>
+
+    <!-- LOGIN SCREEN (Visible by default, hidden on auth) -->
+    <div id="login-screen" class="fixed inset-0 bg-gray-50 z-[100] flex flex-col items-center justify-center p-6 transition-opacity duration-500 overflow-y-auto">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full text-center space-y-6 border border-gray-100 my-auto">
+            <div class="flex justify-center">
+                <div class="p-3 bg-primary/10 rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm-2.633 10.737c-.676.317-1.213-.143-1.01-.869l2.093-7.604c.203-.727.98-1.085 1.706-.883l1.558.432c-.944.682-1.653 1.512-1.653 2.349-.001.285.055.558.159.807l.891 1.235c-.983.585-1.647 1.972-1.647 3.534 0 .289.063.558.176.808l-.842.557 2.345 2.916.467-.37v2.922h2v-2.922l.467.369 2.345-2.916-.842-.557c.113-.25.176-.519.176-.808 0-1.562-.664-2.949-1.647-3.535l.891-1.235c.104-.249.159-.52.159-.807 0-.837-.71-1.667-1.655-2.349l1.559-.432c.73-.201 1.509-.167 1.711.562l-.703 2.559c.203.726-.328 1.186-1.01.869l-.432-.413c-.188-.18-.339-.314-.454-.445-.669.468-1.227.727-1.558.727-.07 0-.14-.024-.204-.074l-.473-.382-.48.382-.47-.067z" />
+                    </svg>
+                </div>
+            </div>
+            <div>
+                <h1 class="text-2xl font-extrabold text-gray-900 tracking-tight">Mileage Manager</h1>
+                <p class="mt-1 text-sm text-gray-500">Sign in to access the shared database.</p>
+            </div>
+            
+            <button id="google-login-btn" class="w-full group relative flex justify-center items-center py-2.5 px-4 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-200 shadow-sm">
+                <div class="flex items-center">
+                    <img class="h-5 w-5 mr-3" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo">
+                    <span class="text-base">Sign in with Google</span>
+                </div>
+            </button>
+
+            <!-- Divider -->
+            <div class="relative w-full">
+                <div class="absolute inset-0 flex items-center">
+                    <div class="w-full border-t border-gray-200"></div>
+                </div>
+                <div class="relative flex justify-center text-xs uppercase">
+                    <span class="px-2 bg-white text-gray-400">Or with Email</span>
+                </div>
+            </div>
+
+            <!-- Email/Password Form -->
+            <form id="email-auth-form" class="w-full space-y-4">
+                <div class="text-left">
+                    <label for="email-input" class="block text-xs font-medium text-gray-700 mb-1">Email address</label>
+                    <input id="email-input" name="email" type="email" autocomplete="email" required class="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" placeholder="you@example.com">
+                </div>
+                <div class="text-left">
+                    <label for="password-input" class="block text-xs font-medium text-gray-700 mb-1">Password</label>
+                    <input id="password-input" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" placeholder="••••••••">
+                </div>
+
+                <div class="flex space-x-3 pt-2">
+                    <button id="email-login-btn" type="button" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-primary hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors shadow-md">
+                        Sign In
+                    </button>
+                    <button id="email-register-btn" type="button" class="group relative w-full flex justify-center py-2 px-4 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors shadow-sm">
+                        Register
+                    </button>
+                </div>
+            </form>
+
+            <div class="pt-2">
+                <button id="guest-login-btn" class="text-xs text-gray-400 hover:text-gray-600 underline">
+                    Continue as Guest (Limited Access)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN APP CONTENT (Hidden by default, shown on auth) -->
+    <div id="main-app" class="max-w-4xl mx-auto space-y-6 p-4 sm:p-6 md:p-10 relative hidden">
+        
+        <!-- User Info & Logout (Replaces App ID Display) -->
+        <div class="absolute top-2 right-4 flex items-center space-x-3">
+            <div class="flex items-center space-x-2">
+                <span id="db-status" class="w-2 h-2 rounded-full bg-yellow-500 animate-pulse" title="Connecting..."></span>
+                <span class="text-xs text-gray-500 font-medium hidden sm:block" id="user-name-display"></span>
+            </div>
+            <button id="logout-btn" class="text-xs text-red-500 font-medium hover:text-red-700 border border-red-200 px-2 py-1 rounded hover:bg-red-50 transition">
+                Sign Out
+            </button>
+        </div>
+
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-extrabold text-primary">Mileage Manager</h1>
+            <p class="mt-2 text-gray-600">Public Shared Fuel Tracker</p>
+        </header>
+
+        <!-- Statistics Overview -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-white p-4 rounded-xl shadow-md border border-gray-100 flex flex-col items-center">
+                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Total Spent</span>
+                <span id="stat-total-cost" class="text-2xl font-bold text-gray-800 mt-1">...</span>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-md border border-gray-100 flex flex-col items-center">
+                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Avg Mileage</span>
+                <span id="stat-avg-mileage" class="text-2xl font-bold text-primary mt-1">... <span class="text-sm font-normal text-gray-500">km/L</span></span>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-md border border-gray-100 flex flex-col items-center">
+                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Total Distance</span>
+                <span id="stat-total-distance" class="text-2xl font-bold text-gray-800 mt-1">... <span class="text-sm font-normal text-gray-500">km</span></span>
+            </div>
+        </div>
+
+        <!-- Main Grid Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            <!-- Input & Price Column (Span 2) -->
+            <div class="lg:col-span-2 space-y-6">
+
+                <!-- 1. Fuel Price Setting Card -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+                    <h2 class="text-lg font-semibold text-gray-800 flex items-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.244-4.243a8 8 0111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        Current Fuel Price (Shared)
+                    </h2>
+                    <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                        <input type="number" id="fuel-price" placeholder="e.g., 105.50" step="0.01" class="flex-grow p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-150" />
+                        <button id="save-price-btn" class="w-full sm:w-auto px-6 py-3 bg-primary text-white font-medium rounded-lg shadow-md hover:bg-primary/90 transition duration-150 transform hover:scale-[1.01]">
+                            Save
+                        </button>
+                    </div>
+                    <p id="current-price-display" class="mt-3 text-sm font-medium text-gray-600"></p>
+                </div>
+
+                <!-- 2. Trip Entry Card -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 relative">
+                    <!-- Loading overlay for trip entry -->
+                    <div id="trip-loading" class="hidden absolute inset-0 loading-overlay z-10 flex items-center justify-center rounded-xl">
+                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                    </div>
+
+                    <h2 class="text-lg font-semibold text-gray-800 flex items-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        New Fuel-up Entry
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- New Date Input -->
+                            <div>
+                                <label for="trip-date" class="block text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">Date</label>
+                                <input type="date" id="trip-date" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-150">
+                            </div>
+                            <!-- Odometer Input -->
+                            <div>
+                                <label for="odo-reading" class="block text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">Odometer (km)</label>
+                                <input type="number" id="odo-reading" placeholder="e.g., 15240" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-150">
+                                <p id="last-odo-display" class="mt-1 text-xs text-gray-500 text-right"></p>
+                            </div>
+                        </div>
+                         
+                        <!-- Amount Paid Input -->
+                        <div>
+                            <label for="amount-paid" class="block text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">Amount Paid</label>
+                            <input type="number" id="amount-paid" placeholder="e.g., 3000" step="0.01" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-150">
+                        </div>
+
+                        <!-- Liters Display -->
+                        <div class="p-3 bg-secondary/5 rounded-lg border border-secondary/20 flex justify-between items-center">
+                            <span class="text-sm font-medium text-gray-600">Est. Liters:</span>
+                            <span class="text-lg font-bold text-secondary"><span id="liters-purchased-display">0.00</span> L</span>
+                        </div>
+
+                        <!-- Save Button -->
+                        <button id="save-trip-btn" class="w-full px-6 py-3 bg-secondary text-white font-semibold rounded-lg shadow-md hover:bg-secondary/90 transition duration-150 transform hover:scale-[1.005]">
+                            Calculate & Save Trip
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Results & Charts Column (Span 1) -->
+            <div class="lg:col-span-1 space-y-6">
+
+                <!-- 3. Current Trip Results Card -->
+                <div class="bg-primary text-white p-6 rounded-xl shadow-lg border border-primary/50 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h2 class="text-lg font-semibold mb-4 border-b border-white/30 pb-2 relative z-10">Last Trip Performance</h2>
+                    
+                    <div class="space-y-4 relative z-10">
+                        <div>
+                            <p class="text-xs uppercase tracking-wide opacity-80">Distance Traveled</p>
+                            <p id="result-distance" class="text-4xl font-extrabold">0</p>
+                            <p class="text-sm opacity-80">kilometers</p>
+                        </div>
+                        <div>
+                            <p class="text-xs uppercase tracking-wide opacity-80">Fuel Efficiency</p>
+                            <p id="result-mileage" class="text-4xl font-extrabold text-green-300">0.00</p>
+                            <p class="text-sm opacity-80">km / Liter</p>
+                        </div>
+                        
+                        <div id="first-trip-message" class="hidden pt-4 border-t border-white/30 text-xs opacity-90 italic">
+                            <p>Once you save your next trip, this calculation will appear!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Chart Card -->
+                <div class="bg-white p-4 rounded-xl shadow-lg border border-gray-200 h-64 flex flex-col">
+                    <h3 class="text-sm font-semibold text-gray-700 mb-2">Efficiency Trend (km/L)</h3>
+                    <div class="flex-grow relative w-full h-full">
+                         <canvas id="mileageChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- 5. Trip History Log -->
+        <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
+                <h2 class="text-xl font-semibold text-gray-800 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2m-7 7h3" />
+                    </svg>
+                    Trip History
+                </h2>
+                <div class="flex space-x-2 mt-2 sm:mt-0">
+                    <button id="export-btn" class="px-3 py-1.5 bg-gray-100 text-gray-600 text-sm font-medium rounded hover:bg-gray-200 transition">
+                        Export CSV
+                    </button>
+                    <button id="install-pwa-btn" class="px-3 py-1.5 bg-gray-100 text-primary text-sm font-medium rounded hover:bg-gray-200 transition">
+                        Install App
+                    </button>
+                </div>
+            </div>
+
+            <div id="trip-log-table-container" class="overflow-x-auto h-72 rounded-lg border border-gray-100 relative">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead>
+                        <tr class="text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50 sticky top-0">
+                            <th class="px-4 py-3">Date</th>
+                            <th class="px-4 py-3">Odo (km)</th>
+                            <th class="px-4 py-3">Dist (km)</th>
+                            <th class="px-4 py-3">Amount</th>
+                            <th class="px-4 py-3">Liters</th>
+                            <th class="px-4 py-3">Km/L</th>
+                            <th class="px-4 py-3 text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="trip-log-body" class="bg-white divide-y divide-gray-200 text-sm">
+                        <!-- Log entries will be inserted here -->
+                    </tbody>
+                </table>
+                <p id="no-data-message" class="text-center py-10 text-gray-400 hidden">No trips recorded yet.</p>
+                <div id="log-loading" class="absolute inset-0 bg-white flex items-center justify-center z-10">
+                    <span class="text-gray-400 animate-pulse">Syncing data...</span>
+                </div>
+            </div>
+            
+            <div class="mt-4 flex justify-end">
+                 <button id="clear-data-btn" class="text-xs text-red-400 hover:text-red-600 underline">
+                    Clear Shared Database
+                </button>
+            </div>
+        </div>
+
+        <!-- Custom Alert/Modal Area -->
+        <div id="alert-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 hidden z-50 items-center justify-center p-4">
+            <div class="bg-white p-6 rounded-xl shadow-2xl max-w-sm w-full space-y-4 transform transition-all scale-100">
+                <h3 id="alert-title" class="text-xl font-bold text-gray-800"></h3>
+                <p id="alert-message" class="text-gray-600 break-words"></p>
+                <button id="alert-close-btn" class="w-full py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition">
+                    Got it
+                </button>
+            </div>
+        </div>
+
+        <!-- Confirmation Modal -->
+        <div id="confirm-clear-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 hidden z-50 items-center justify-center p-4">
+            <div class="bg-white p-6 rounded-xl shadow-2xl max-w-sm w-full space-y-4">
+                <h3 class="text-xl font-bold text-red-600">Confirmation Required</h3>
+                <p class="text-gray-600">Are you sure? This action cannot be undone.</p>
+                <div class="flex justify-end space-x-3">
+                    <button id="confirm-no-btn" class="py-2 px-4 bg-gray-300 text-gray-800 font-medium rounded-lg hover:bg-gray-400 transition">
+                        Cancel
+                    </button>
+                    <button id="confirm-yes-btn" class="py-2 px-4 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600 transition">
+                        Confirm
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- EDIT TRIP MODAL -->
+        <div id="edit-trip-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 hidden z-50 items-center justify-center p-4">
+            <div class="bg-white p-6 rounded-xl shadow-2xl max-w-md w-full space-y-5">
+                <h3 class="text-xl font-bold text-primary border-b pb-2">Edit Trip Entry</h3>
+                <input type="hidden" id="edit-trip-id">
+
+                <div class="space-y-4">
+                    <div>
+                        <label for="edit-date" class="block text-sm font-medium text-gray-700">Fuel-up Date</label>
+                        <input type="date" id="edit-date" class="mt-1 w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                    </div>
+                    <div>
+                        <label for="edit-odo-reading" class="block text-sm font-medium text-gray-700">Odometer Reading (km)</label>
+                        <input type="number" id="edit-odo-reading" class="mt-1 w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                    </div>
+                    <div>
+                        <label for="edit-amount-paid" class="block text-sm font-medium text-gray-700">Amount Paid</label>
+                        <input type="number" id="edit-amount-paid" step="0.01" class="mt-1 w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                    </div>
+                </div>
+
+                <div class="flex justify-end space-x-3 pt-3">
+                    <button id="cancel-edit-btn" class="py-2 px-4 bg-gray-300 text-gray-800 font-medium rounded-lg hover:bg-gray-400 transition">
+                        Cancel
+                    </button>
+                    <button id="update-edit-btn" class="py-2 px-4 bg-secondary text-white font-medium rounded-lg shadow-md hover:bg-secondary/90 transition">
+                        Update
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Firebase Integration -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken, GoogleAuthProvider, signInWithPopup, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, doc, setDoc, addDoc, deleteDoc, updateDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
+
+        // --- HELPER FOR TIMEOUT ---
+        const timeout = (ms) => new Promise((_, reject) => setTimeout(() => reject(new Error("Operation timed out. Possible causes: \n1. Internet connection lost.\n2. Database doesn't exist (Check Firebase Console).\n3. Firestore Rules blocking writes.")), ms));
+
+        // --- FIREBASE CONFIG (RESTORED) ---
+        const firebaseConfig = {
+            apiKey: "AIzaSyClzau6ZVh5yWGSKEZH6iwzV6ilF6aajgU",
+            authDomain: "milege-track.firebaseapp.com",
+            projectId: "milege-track",
+            storageBucket: "milege-track.firebasestorage.app",
+            messagingSenderId: "106774041536",
+            appId: "1:106774041536:web:5b67f579bd91a98f332e25",
+            measurementId: "G-GTKNZGZPRL"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        console.log("Firebase Initialized");
+        
+        // --- SAFE ANALYTICS INIT ---
+        let analytics;
+        try {
+            analytics = getAnalytics(app);
+            console.log("Analytics Loaded");
+        } catch (e) {
+            console.warn("Analytics disabled/failed (OK)");
+        }
+
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        
+        // --- GOOGLE SHEETS INTEGRATION ---
+        const GOOGLE_SHEETS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzTjdpGeWhrBC2Am3tyHJgPUM4EgpglEVJJsUa7G5TZu29GQVpMNQa4PObExg_ipSLHxQ/exec'; 
+
+        // --- STATE & VARS ---
+        let deferredPrompt; 
+        let mileageChartInstance = null;
+        let currentUser = null;
+        let currentTrips = []; // Local mirror of Firestore data
+        let currentFuelPrice = 0;
+
+        // --- DOM ELEMENTS ---
+        const Elements = { 
+            // Auth Screens
+            loginScreen: document.getElementById('login-screen'),
+            mainApp: document.getElementById('main-app'),
+            
+            googleLoginBtn: document.getElementById('google-login-btn'),
+            guestLoginBtn: document.getElementById('guest-login-btn'),
+            
+            // Email Auth
+            emailInput: document.getElementById('email-input'),
+            passwordInput: document.getElementById('password-input'),
+            emailLoginBtn: document.getElementById('email-login-btn'),
+            emailRegisterBtn: document.getElementById('email-register-btn'),
+
+            logoutBtn: document.getElementById('logout-btn'),
+            userNameDisplay: document.getElementById('user-name-display'),
+            dbStatus: document.getElementById('db-status'),
+
+            // Inputs
+            fuelPriceInput: document.getElementById('fuel-price'),
+            savePriceBtn: document.getElementById('save-price-btn'),
+            currentPriceDisplay: document.getElementById('current-price-display'),
+            tripDateInput: document.getElementById('trip-date'), 
+            odoReadingInput: document.getElementById('odo-reading'),
+            amountPaidInput: document.getElementById('amount-paid'),
+            saveTripBtn: document.getElementById('save-trip-btn'),
+            lastOdoDisplay: document.getElementById('last-odo-display'),
+            litersDisplay: document.getElementById('liters-purchased-display'),
+            
+            // Results & Stats
+            resultDistance: document.getElementById('result-distance'),
+            resultMileage: document.getElementById('result-mileage'),
+            firstTripMessage: document.getElementById('first-trip-message'),
+            statTotalCost: document.getElementById('stat-total-cost'),
+            statAvgMileage: document.getElementById('stat-avg-mileage'),
+            statTotalDistance: document.getElementById('stat-total-distance'),
+
+            // UI Components
+            tripLogBody: document.getElementById('trip-log-body'),
+            exportBtn: document.getElementById('export-btn'),
+            installPWABtn: document.getElementById('install-pwa-btn'),
+            clearDataBtn: document.getElementById('clear-data-btn'),
+            noDataMessage: document.getElementById('no-data-message'),
+            userIdDisplay: document.getElementById('user-id-display'),
+            
+            // Loading
+            tripLoading: document.getElementById('trip-loading'),
+            logLoading: document.getElementById('log-loading'),
+
+            // Modals
+            alertModal: document.getElementById('alert-modal'),
+            alertTitle: document.getElementById('alert-title'),
+            alertMessage: document.getElementById('alert-message'),
+            alertCloseBtn: document.getElementById('alert-close-btn'),
+            confirmClearModal: document.getElementById('confirm-clear-modal'),
+            confirmYesBtn: document.getElementById('confirm-yes-btn'),
+            confirmNoBtn: document.getElementById('confirm-no-btn'),
+            
+            // Edit Modal
+            editModal: document.getElementById('edit-trip-modal'),
+            editTripId: document.getElementById('edit-trip-id'),
+            editDate: document.getElementById('edit-date'),
+            editOdo: document.getElementById('edit-odo-reading'),
+            editAmount: document.getElementById('edit-amount-paid'),
+            updateEditBtn: document.getElementById('update-edit-btn'),
+            cancelEditBtn: document.getElementById('cancel-edit-btn'),
+
+            // Setup Modal
+            setupModal: document.getElementById('setup-modal'), // Add this
+            closeSetupBtn: document.getElementById('close-setup-btn'), // Add this
+            retryConnectionBtn: document.getElementById('retry-connection-btn'), // Add this
+        };
+
+        // --- AUTHENTICATION LOGIC ---
+        
+        const provider = new GoogleAuthProvider();
+
+        const handleGoogleLogin = async () => {
+            try {
+                console.log("Attempting Google Login...");
+                await signInWithPopup(auth, provider);
+                console.log("Google Login Success");
+            } catch (error) {
+                console.error("Auth Error: " + error.code);
+                if (error.code === 'auth/unauthorized-domain') {
+                    showAlert("Configuration Error", `This domain (${window.location.hostname}) is not authorized in your Firebase Console. <br><br>Please add it to <b>Authentication > Settings > Authorized Domains</b>.<br><br>Try <b>Guest Login</b> instead.`);
+                } else if (error.code === 'auth/operation-not-allowed') {
+                    showAlert("Configuration Error", "Google Sign-In is disabled. Enable it in Firebase Console > Authentication > Sign-in method.");
+                } else {
+                    showAlert("Login Failed", error.message);
+                }
+            }
+        };
+
+        const handleGuestLogin = async () => {
+             try {
+                console.log("Attempting Guest Login...");
+                await signInAnonymously(auth);
+                console.log("Guest Login Success");
+            } catch (error) {
+                console.error("Auth Error: " + error.code);
+                if (error.code === 'auth/operation-not-allowed') {
+                    showAlert("Configuration Error", "Anonymous Login disabled. Enable it in Firebase Console.");
+                } else {
+                    showAlert("Guest Login Failed", error.message);
+                }
+            }
+        };
+
+        const handleEmailLogin = async () => {
+            const email = Elements.emailInput.value;
+            const password = Elements.passwordInput.value;
+            
+            if (!email || !password) {
+                return showAlert("Input Error", "Please enter both email and password.");
+            }
+
+            try {
+                Elements.emailLoginBtn.textContent = "Signing In...";
+                console.log("Attempting Email Login...");
+                await signInWithEmailAndPassword(auth, email, password);
+                console.log("Email Login Success");
+            } catch (error) {
+                console.error("Auth Error: " + error.code);
+                showAlert("Login Failed", error.message);
+            } finally {
+                Elements.emailLoginBtn.textContent = "Sign In";
+            }
+        };
+
+        const handleEmailRegister = async () => {
+            const email = Elements.emailInput.value;
+            const password = Elements.passwordInput.value;
+
+            if (!email || !password) {
+                return showAlert("Input Error", "Please enter both email and password.");
+            }
+            
+            if (password.length < 6) {
+                return showAlert("Weak Password", "Password must be at least 6 characters.");
+            }
+
+            try {
+                Elements.emailRegisterBtn.textContent = "Creating...";
+                console.log("Attempting Registration...");
+                await createUserWithEmailAndPassword(auth, email, password);
+                console.log("Registration Success");
+            } catch (error) {
+                console.error("Auth Error: " + error.code);
+                if (error.code === 'auth/operation-not-allowed') {
+                    showAlert("Configuration Error", "Email/Password login is disabled. Enable it in Firebase Console > Authentication.");
+                } else {
+                    showAlert("Registration Failed", error.message);
+                }
+            } finally {
+                Elements.emailRegisterBtn.textContent = "Register";
+            }
+        };
+
+        const handleLogout = async () => {
+            try {
+                console.log("Logging out...");
+                await signOut(auth);
+                window.location.reload(); 
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        // Monitor Auth State
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                currentUser = user;
+                console.log(`User Authenticated: ${user.uid}`);
+                
+                // Hide Login, Show App
+                Elements.loginScreen.classList.add('opacity-0', 'pointer-events-none');
+                setTimeout(() => { Elements.loginScreen.classList.add('hidden'); }, 500);
+                Elements.mainApp.classList.remove('hidden');
+                
+                // Display User Info
+                let displayName = user.email;
+                if (user.isAnonymous) displayName = "Guest User";
+                else if (user.displayName) displayName = user.displayName;
+                
+                Elements.userNameDisplay.textContent = displayName;
+                
+                initDataListeners();
+            } else {
+                // Show Login, Hide App
+                Elements.loginScreen.classList.remove('hidden', 'opacity-0', 'pointer-events-none');
+                Elements.mainApp.classList.add('hidden');
+                currentUser = null;
+            }
+        });
+
+        // --- FIRESTORE LISTENERS ---
+        function initDataListeners() {
+            if (!currentUser) return;
+            console.log("Initializing Database Listeners...");
+
+            // 1. Listen to Settings (Price)
+            const settingsRef = doc(db, 'settings', 'config');
+            onSnapshot(settingsRef, { includeMetadataChanges: true }, (docSnap) => {
+                const source = docSnap.metadata.fromCache ? "local cache" : "server";
+                console.log(`Read Settings from ${source}`);
+
+                if (!docSnap.metadata.fromCache) {
+                    Elements.dbStatus.classList.remove('bg-red-500', 'bg-yellow-500', 'animate-pulse');
+                    Elements.dbStatus.classList.add('bg-green-500'); // Connected!
+                }
+                
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    if (data.price) {
+                        currentFuelPrice = parseFloat(data.price);
+                        Elements.fuelPriceInput.value = currentFuelPrice.toFixed(2);
+                        Elements.currentPriceDisplay.textContent = `Price: ${currentFuelPrice.toFixed(2)} / L`;
+                    }
+                } else {
+                    Elements.currentPriceDisplay.textContent = 'Please set price.';
+                }
+            }, (error) => {
+                handleDbError(error);
+            });
+
+            // 2. Listen to Trips
+            const tripsRef = collection(db, 'trips');
+            
+            onSnapshot(tripsRef, { includeMetadataChanges: true }, (snapshot) => {
+                const source = snapshot.metadata.fromCache ? "local cache" : "server";
+                console.log(`Received ${snapshot.docs.length} trips from ${source}.`);
+                
+                currentTrips = snapshot.docs.map(d => ({id: d.id, ...d.data()}));
+                currentTrips.sort((a, b) => b.odo - a.odo);
+                recalculateDerivedData(currentTrips);
+                renderTripLog(currentTrips);
+                updateStats(currentTrips);
+                updateChart(currentTrips);
+                updateLastOdoDisplay();
+                Elements.logLoading.classList.add('hidden'); 
+            }, (error) => {
+                handleDbError(error);
+            });
+        }
+
+        function handleDbError(error) {
+            console.error("DB Error: " + error.code);
+            Elements.dbStatus.classList.remove('bg-green-500');
+            Elements.dbStatus.classList.add('bg-red-500');
+            
+            let msg = "Could not fetch data. " + error.message;
+            if (error.message.includes("timed out") || error.code === 'unimplemented' || error.code === 'unavailable') {
+                Elements.setupModal.classList.remove('hidden');
+                Elements.setupModal.classList.add('flex');
+            } else if (error.code === 'permission-denied') {
+                 showAlert("Permission Denied", "Your database rules block writing. Go to Firebase Console > Firestore > Rules and set 'allow read, write: if true;' for testing.");
+            } else if (error.code === 'not-found' || error.message.includes('NOT_FOUND')) {
+                 msg = "<b>Database Not Found</b><br>1. Go to Firebase Console.<br>2. Click 'Firestore Database' in left menu.<br>3. Click <b>Create Database</b>.";
+                 showAlert("Database Error", msg);
+            } else {
+                 showAlert("Database Error", msg);
+            }
+        }
+
+        // --- LOGIC FUNCTIONS ---
+        
+        function updateLastOdoDisplay() {
+            if (currentTrips.length > 0) {
+                // Since currentTrips is sorted Descending, index 0 is max
+                Elements.lastOdoDisplay.textContent = `Last: ${currentTrips[0].odo} km`;
+            } else {
+                Elements.lastOdoDisplay.textContent = 'No history.';
+            }
+        }
+
+        function recalculateDerivedData(trips) {
+            // Sort Ascending for calculation
+            const sortedAsc = [...trips].sort((a, b) => a.odo - b.odo);
+            
+            for (let i = 0; i < sortedAsc.length; i++) {
+                const current = sortedAsc[i];
+                const prev = sortedAsc[i-1];
+                
+                if (prev) {
+                    current.calcDistance = current.odo - prev.odo;
+                    current.calcMileage = current.calcDistance / current.liters;
+                } else {
+                    current.calcDistance = 0;
+                    current.calcMileage = 0;
+                }
+            }
+            
+            trips.forEach(t => {
+                const calced = sortedAsc.find(x => x.id === t.id);
+                t.distance = calced.calcDistance;
+                t.mileage = calced.calcMileage;
+            });
+        }
+
+        async function sendToGoogleSheets(tripData) {
+            if (!GOOGLE_SHEETS_SCRIPT_URL || GOOGLE_SHEETS_SCRIPT_URL.includes('PASTE_YOUR')) {
+                console.log("Skipping Sheets Sync (No URL)");
+                return;
+            }
+
+            try {
+                const response = await fetch(GOOGLE_SHEETS_SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(tripData),
+                    mode: 'no-cors', 
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                console.log("Sent to Google Sheets");
+            } catch (error) {
+                console.error("Google Sheets Sync Failed:", error);
+            }
+        }
+
+        async function saveFuelPrice() {
+            if (!currentUser) return;
+            const price = parseFloat(Elements.fuelPriceInput.value);
+            if (isNaN(price) || price <= 0) return showAlert("Error", "Enter a valid price.");
+
+            const btn = Elements.savePriceBtn;
+            btn.textContent = "Saving...";
+            
+            try {
+                console.log("Saving Fuel Price...");
+                
+                // ADDED TIMEOUT RACE
+                const settingsRef = doc(db, 'settings', 'config');
+                await Promise.race([
+                    setDoc(settingsRef, { price: price }, { merge: true }),
+                    timeout(5000)
+                ]);
+                
+                console.log("Fuel Price Saved");
+                
+                btn.textContent = "Saved!";
+                btn.classList.add('bg-green-500');
+                setTimeout(() => {
+                    btn.textContent = "Save";
+                    btn.classList.remove('bg-green-500');
+                }, 1500);
+            } catch (e) {
+                handleDbError(e);
+                btn.textContent = "Save";
+            }
+        }
+
+        function updateLitersPurchased() {
+            const amount = parseFloat(Elements.amountPaidInput.value);
+            if (currentFuelPrice > 0 && amount > 0) {
+                const liters = amount / currentFuelPrice;
+                Elements.litersDisplay.textContent = liters.toFixed(2);
+            } else {
+                Elements.litersDisplay.textContent = '0.00';
+            }
+        }
+
+        async function saveTrip() {
+            if (!currentUser) {
+                console.warn("Cannot save: No user");
+                return;
+            }
+            
+            const currentOdo = parseFloat(Elements.odoReadingInput.value);
+            const amountPaid = parseFloat(Elements.amountPaidInput.value);
+            const inputDate = Elements.tripDateInput.value;
+            
+            // Validation
+            if (currentFuelPrice <= 0) return showAlert("Missing Price", "Please save fuel price first.");
+            if (!inputDate) return showAlert("Missing Date", "Select date.");
+            if (isNaN(currentOdo) || currentOdo <= 0) return showAlert("Error", "Invalid odometer reading.");
+            if (isNaN(amountPaid) || amountPaid <= 0) return showAlert("Error", "Invalid amount.");
+
+            if (currentTrips.length > 0) {
+                const lastOdo = currentTrips[0].odo; // Sorted Descending
+                if (currentOdo <= lastOdo) return showAlert("Error", `New odometer must be > ${lastOdo}.`);
+            }
+
+            const liters = amountPaid / currentFuelPrice;
+
+            Elements.tripLoading.classList.remove('hidden');
+
+            try {
+                console.log("Saving Trip to Firestore...");
+                
+                // ADDED TIMEOUT RACE
+                const tripsRef = collection(db, 'trips');
+                await Promise.race([
+                    addDoc(tripsRef, {
+                        date: inputDate,
+                        odo: currentOdo,
+                        amount: amountPaid,
+                        liters: liters,
+                        createdAt: new Date().toISOString()
+                    }),
+                    timeout(5000)
+                ]);
+
+                console.log("Trip Saved Successfully");
+
+                // 2. Prepare and Send to Google Sheets
+                let distance = 0;
+                let mileage = 0;
+                if (currentTrips.length > 0) {
+                    const lastOdo = currentTrips[0].odo; 
+                    distance = currentOdo - lastOdo;
+                    mileage = distance / liters;
+                }
+
+                const googleSheetsPayload = {
+                    date: inputDate,
+                    odo: currentOdo,
+                    amount: amountPaid,
+                    liters: liters,
+                    distance: distance,
+                    mileage: mileage
+                };
+                
+                sendToGoogleSheets(googleSheetsPayload);
+
+                Elements.odoReadingInput.value = '';
+                Elements.amountPaidInput.value = '';
+                Elements.litersDisplay.textContent = '0.00';
+                Elements.firstTripMessage.classList.add('hidden');
+
+            } catch (e) {
+                handleDbError(e);
+            } finally {
+                Elements.tripLoading.classList.add('hidden');
+            }
+        }
+
+        // --- RENDER & STATS ---
+
+        function renderTripLog(trips) {
+            Elements.tripLogBody.innerHTML = ''; 
+
+            if (trips.length === 0) {
+                Elements.noDataMessage.classList.remove('hidden');
+                Elements.resultDistance.textContent = '0';
+                Elements.resultMileage.textContent = '0.00';
+                Elements.firstTripMessage.classList.remove('hidden');
+                return;
+            }
+
+            Elements.noDataMessage.classList.add('hidden');
+            
+            if (trips.length > 0 && trips[0].distance >= 0) {
+                Elements.resultDistance.textContent = trips[0].distance.toFixed(0);
+                Elements.resultMileage.textContent = trips[0].mileage.toFixed(2);
+                Elements.firstTripMessage.classList.add('hidden');
+            }
+
+            trips.forEach((trip) => {
+                const row = Elements.tripLogBody.insertRow();
+                row.className = 'hover:bg-gray-50 transition duration-100';
+                
+                const distanceDisplay = trip.distance > 0 ? trip.distance.toFixed(0) : '-';
+                const mileageDisplay = trip.mileage > 0 ? trip.mileage.toFixed(2) : '-';
+                
+                let dateDisplay = trip.date;
+                try {
+                    const d = new Date(trip.date);
+                    const userTimezoneOffset = d.getTimezoneOffset() * 60000;
+                    const adjustedDate = new Date(d.getTime() + userTimezoneOffset);
+                    dateDisplay = `${adjustedDate.getDate()}/${adjustedDate.getMonth()+1}/${adjustedDate.getFullYear().toString().substr(-2)}`;
+                } catch (e) {}
+
+                const cells = [
+                    dateDisplay, 
+                    trip.odo.toFixed(0),
+                    distanceDisplay,
+                    trip.amount.toFixed(0),
+                    trip.liters.toFixed(1),
+                    mileageDisplay
+                ];
+
+                cells.forEach(text => {
+                    const cell = row.insertCell();
+                    cell.textContent = text;
+                    cell.className = 'px-4 py-3 whitespace-nowrap text-gray-700';
+                });
+                
+                const actionCell = row.insertCell();
+                actionCell.className = 'px-4 py-3 whitespace-nowrap text-right font-medium space-x-2';
+
+                const editBtn = document.createElement('button');
+                editBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>';
+                editBtn.className = 'text-primary hover:text-indigo-800 p-1';
+                editBtn.onclick = () => openEditModal(trip.id);
+                actionCell.appendChild(editBtn);
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>';
+                deleteBtn.className = 'text-red-400 hover:text-red-600 p-1';
+                deleteBtn.onclick = () => confirmDeleteTrip(trip.id);
+                actionCell.appendChild(deleteBtn);
+            });
+        }
+
+        function updateStats(trips) {
+            if (!trips || trips.length === 0) {
+                Elements.statTotalCost.textContent = '0.00';
+                Elements.statAvgMileage.textContent = '0.00';
+                Elements.statTotalDistance.textContent = '0';
+                return;
+            }
+
+            const totalCost = trips.reduce((sum, trip) => sum + trip.amount, 0);
+            const totalDistance = trips.reduce((sum, trip) => sum + (trip.distance || 0), 0);
+            const totalLiters = trips.reduce((sum, trip) => sum + trip.liters, 0);
+            const avgMileage = totalLiters > 0 ? (totalDistance / totalLiters) : 0;
+
+            Elements.statTotalCost.textContent = totalCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            Elements.statTotalDistance.textContent = totalDistance.toLocaleString();
+            Elements.statAvgMileage.innerHTML = `${avgMileage.toFixed(2)} <span class="text-sm font-normal text-gray-500">km/L</span>`;
+        }
+
+        function updateChart(trips) {
+            const ctx = document.getElementById('mileageChart').getContext('2d');
+            
+            const chartData = [...trips].sort((a, b) => new Date(a.date) - new Date(b.date));
+            const validData = chartData.filter(d => d.mileage > 0 && d.mileage < 100); 
+
+            const labels = validData.map(d => {
+                const date = new Date(d.date);
+                return `${date.getDate()}/${date.getMonth()+1}`;
+            });
+            const dataPoints = validData.map(d => d.mileage);
+
+            if (mileageChartInstance) {
+                mileageChartInstance.destroy();
+            }
+
+            mileageChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Mileage (km/L)',
+                        data: dataPoints,
+                        borderColor: '#4F46E5', 
+                        backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                        tension: 0.3,
+                        fill: true,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#4F46E5',
+                        pointRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: false, grid: { borderDash: [2, 4] } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        // --- EDIT/DELETE OPERATIONS ---
+
+        function confirmDeleteTrip(id) {
+            Elements.confirmClearModal.querySelector('h3').textContent = 'Confirm Delete';
+            Elements.confirmClearModal.querySelector('p').innerHTML = 'Delete this trip entry?';
+            Elements.confirmYesBtn.onclick = async () => {
+                try {
+                    // Simplified Root Collection
+                    await deleteDoc(doc(db, 'trips', id));
+                    showAlert("Deleted", "Trip removed.");
+                } catch(e) {
+                    handleDbError(e);
+                }
+                Elements.confirmClearModal.classList.add('hidden');
+            };
+            Elements.confirmNoBtn.onclick = () => Elements.confirmClearModal.classList.add('hidden');
+            Elements.confirmClearModal.classList.remove('hidden');
+            Elements.confirmClearModal.classList.add('flex');
+        }
+
+        function openEditModal(id) {
+            const trip = currentTrips.find(t => t.id === id);
+            if (!trip) return;
+
+            Elements.editTripId.value = trip.id;
+            Elements.editDate.value = trip.date;
+            Elements.editOdo.value = trip.odo.toFixed(0);
+            Elements.editAmount.value = trip.amount.toFixed(2);
+
+            Elements.editModal.classList.remove('hidden');
+            Elements.editModal.classList.add('flex');
+        }
+
+        async function updateEditedTrip() {
+            if (!currentUser) return;
+            const id = Elements.editTripId.value;
+            const newDate = Elements.editDate.value;
+            const newOdo = parseFloat(Elements.editOdo.value);
+            const newAmount = parseFloat(Elements.editAmount.value);
+            
+            if (isNaN(newOdo) || newOdo <= 0 || isNaN(newAmount) || newAmount <= 0) return showAlert("Error", "Invalid values.");
+            
+            if(currentFuelPrice <= 0) return showAlert("Error", "Fuel price missing.");
+            const newLiters = newAmount / currentFuelPrice;
+
+            try {
+                // Simplified Root Collection
+                const tripRef = doc(db, 'trips', id);
+                await updateDoc(tripRef, {
+                    date: newDate,
+                    odo: newOdo,
+                    amount: newAmount,
+                    liters: newLiters
+                });
+                
+                Elements.editModal.classList.add('hidden');
+                showAlert("Updated", "Trip updated.");
+            } catch(e) {
+                handleDbError(e);
+            }
+        }
+
+        async function clearAllData() {
+            if (!currentUser) return;
+            Elements.confirmClearModal.querySelector('h3').textContent = 'Clear All Data?';
+            Elements.confirmClearModal.querySelector('p').innerHTML = 'This will permanently delete all logs from the public shared database.';
+            
+            Elements.confirmYesBtn.onclick = async () => {
+                Elements.confirmClearModal.classList.add('hidden');
+                Elements.logLoading.classList.remove('hidden');
+                try {
+                    // Firestore doesn't support "delete collection", so we must delete docs one by one
+                    // Simplified Root Collection
+                    const promises = currentTrips.map(t => 
+                        deleteDoc(doc(db, 'trips', t.id))
+                    );
+                    await Promise.all(promises);
+                    showAlert("Cleared", "All data wiped from cloud.");
+                } catch(e) {
+                    handleDbError(e);
+                } finally {
+                    Elements.logLoading.classList.add('hidden');
+                }
+            };
+            Elements.confirmNoBtn.onclick = () => Elements.confirmClearModal.classList.add('hidden');
+
+            Elements.confirmClearModal.classList.remove('hidden');
+            Elements.confirmClearModal.classList.add('flex');
+        }
+        
+        // --- UTILS ---
+        function showAlert(title, message) {
+            Elements.alertTitle.textContent = title;
+            Elements.alertMessage.innerHTML = message;
+            Elements.alertModal.classList.remove('hidden');
+            Elements.alertModal.classList.add('flex');
+        }
+
+        function hideAlert() {
+            Elements.alertModal.classList.add('hidden');
+            Elements.alertModal.classList.remove('flex');
+        }
+
+        function promptInstallGuidance() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        showAlert("Installation Complete", "App shortcut added!");
+                    } else {
+                        deferredPrompt = null; 
+                    }
+                });
+                return;
+            }
+            const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+            let guidance = "Tap your browser menu and select **'Add to Home Screen'** or **'Install App'**.";
+            if (!isMobile) guidance = "Look for the install icon in your address bar or browser menu.";
+            showAlert("Install App", guidance);
+        }
+
+        function exportToCSV() {
+            if (currentTrips.length === 0) return showAlert("Failed", "No data to export.");
+
+            let csv = 'Date,Odo,Distance,Amount,Liters,Mileage\n'; 
+            currentTrips.forEach(trip => {
+                csv += `${trip.date},${trip.odo},${trip.distance},${trip.amount},${trip.liters},${trip.mileage}\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute("download", `fuel_log_${new Date().toISOString().slice(0, 10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // --- INIT EVENT LISTENERS ---
+        // Set Default Date
+        Elements.tripDateInput.value = new Date().toISOString().slice(0, 10);
+
+        // PWA
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+        });
+
+        // UI Binding
+        Elements.googleLoginBtn.addEventListener('click', handleGoogleLogin);
+        Elements.guestLoginBtn.addEventListener('click', handleGuestLogin);
+        Elements.emailLoginBtn.addEventListener('click', handleEmailLogin);
+        Elements.emailRegisterBtn.addEventListener('click', handleEmailRegister);
+        
+        Elements.logoutBtn.addEventListener('click', handleLogout);
+        Elements.savePriceBtn.addEventListener('click', saveFuelPrice);
+        Elements.amountPaidInput.addEventListener('input', updateLitersPurchased);
+        Elements.saveTripBtn.addEventListener('click', saveTrip);
+        Elements.exportBtn.addEventListener('click', exportToCSV);
+        Elements.installPWABtn.addEventListener('click', promptInstallGuidance);
+        Elements.clearDataBtn.addEventListener('click', clearAllData);
+        
+        Elements.alertCloseBtn.addEventListener('click', hideAlert);
+        Elements.alertModal.addEventListener('click', (e) => {
+            if (e.target === Elements.alertModal) hideAlert();
+        });
+
+        Elements.updateEditBtn.addEventListener('click', updateEditedTrip);
+        Elements.cancelEditBtn.addEventListener('click', () => Elements.editModal.classList.add('hidden'));
+        Elements.editModal.addEventListener('click', (e) => {
+            if (e.target === Elements.editModal) Elements.editModal.classList.add('hidden');
+        });
+        
+        // Listeners for the new modal
+        Elements.closeSetupBtn.addEventListener('click', () => {
+            Elements.setupModal.classList.add('hidden');
+            Elements.setupModal.classList.remove('flex');
+        });
+        Elements.retryConnectionBtn.addEventListener('click', () => {
+            window.location.reload();
+        });
+    </script>
+</body>
+</html>

@@ -5,14 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fuel Mileage Tracker v2</title>
     <link rel="icon" href="assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+    <link rel="apple-touch-icon" href="assets/fuel.jpg">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <!-- PWA & Icon Setup START -->
     <meta name="theme-color" content="#4F46E5">
     <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzQwMzBiOCIgZD0iTTEyIDJjNS41MjMgMCAxMCA0LjQ3NyAxMCAxMGMwIDUuNTIzLTQuNDc3IDEwLTEwIDEwUzIgMTcuNTIzIDIgMTJhMTAgMTAgMCAwMS02IDMuNTE4bDYuMDI2LTkuNjUyQzcuNTc4IDMuMTI1IDkuNjI3IDIgMTIgMnptLTIuNjMzIDEwLjczN2MtLjY3Ni4zMTctMS4yMTMtLjE0My0xLjAxLS44NjlMNy40NSAzLjI2NGMuMjAzLS43MjcuOTgtMS4wODUgMS43MDYtLjg4M2wxLjU1OC40MzJjLS45NDQuNjgyLTEuNjUzIDEuNTEyLTEuNjUzIDIuMzQ5LS4wMDEuMjg1LjA1NS41NTguMTU5LjgwN2wuODkxIDEuMjM1Yy0uOTgzLjU4NS0xLjY0NyAxLjk3Mi0xLjY0NyAzLjUzNCAwIC4yODkuMDYzLjU1OC4xNzYuODA4bC0uODQyLjU1NyAyLjM0NSAyLjkxNi40NjctLjM3djIuOTIyaDJ2LTIuOTIybC40NjcuMzY5IDIuMzQ1LTIuOTE2LS44NDItLjU1N2MuMTEzLS4yNS4xNzYtLjUxOS4xNzYtLjgwOCAwLTEuNTYyLS42NjQtMi45NDktMS42NDctMy41MzVsLjg5MS0xLjIzNWMuMTA0LS4yNDkuMTU5LS41Mi4xNTktLjgwNyAwLS44MzctLjcxLTEuNjY3LTEuNjU1LTIuMzQ5bDEuNTU9LS40MzJjLjczLS4yMDEgMS41MDktLjE2NyAxLjcxMS41NjJsLS43MDMgMi41NTljLjIwMy43MjYtLjMyOCAxLjE4Ni0xLjAxLjg2OWwtLjQzMi0uNDEzYy0uMTg4LS4xOC0uMzM5LS4zMTQtLjQ1NC0uNDQ1LS42NjkuNDY4LTEuMjI3LjcyNy0xLjU1OC43MjctLjA3IDAtLjE0LS4wMjQtLjIwNC0uMDc0bC0uNDczLS4zODItLjQ4LjM4Mi0uNDctLjA2N3oiLz48L3N2Zy4+" />
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzQwMzBiOCIgZD0iTTEyIDJjNS41MjMgMCAxMCA0LjQ3NyAxMCAxMGMwIDUuNTIzLTQuNDc3IDEwLTEwIDEwUzIgMTcuNTIzIDIgMTJhMTAgMTAgMCAwMS02IDMuNTE4bDYuMDI2LTkuNjUyQzcuNTc4IDMuMTI1IDkuNjI3IDIgMTIgMnptLTIuNjMzIDEwLjczN2MtLjY3Ni4zMTctMS4yMTMtLjE0My0xLjAxLS44NjlMNy40NSAzLjI2NGMuMjAzLS43MjcuOTgtMS4wODUgMS43MDYtLjg4M2wxLjU1OC40MzJjLS45NDQuNjgyLTEuNjUzIDEuNTEyLTEuNjUzIDIuMzQ5LS4wMDEuMjg1LjA1NS41NTguMTU5LjgwN2wuODkxIDEuMjM1Yy0uOTgzLjU4NS0xLjY0NyAxLjk3Mi0xLjY0NyAzLjUzNCAwIC4yODkuMDYzLjU1OC4xNzYuODA4bC0uODQyLjU1NyAyLjM0NSAyLjkxNi40NjctLjM3djIuOTIyaDJ2LTIuOTIybC40NjcuMzY5IDIuMzQ1LTIuOTE2LS44NDItLjU1N2MuMTEzLS4yNS4xNzYtLjUxOS4xNzYtLjgwOCAwLTEuNTYyLS42NjQtMi45NDktMS42NDctMy41MzVsLjg5MS0xLjIzNWMuMTA0LS4yNDkuMTU5LS41Mi4xNTktLjgwNyAwLS44MzctLjcxLTEuNjY3LTEuNjU1LTIuMzQ5bDEuNTU9LS40MzJjLjczLS4yMDEgMS41MDktLjE2NyAxLjcxMS41NjJsLS43MDMgMi41NTljLjIwMy43MjYtLjMyOCAxLjE4Ni0xLjAxLjg2OWwtLjQzMi0uNDEzYy0uMTg4LS4xOC0uMzM5LS4zMTQtLjQ1NC0uNDQ1LS42NjkuNDY4LTEuMjI3LjcyNy0xLjU1OC43MjctLjA3IDAtLjE0LS4wMjQtLjIwNC0uMDc0bC0uNDczLS4zODItLjQ4LjM4Mi0uNDctLjA2N3oiLz48L3N2Zy4+" />
     <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIk1pbGVhZ2UgTWFuYWdlciIsCiAgInNob3J0X25hbWUiOiAiRnVlbCBMb2ciLAogICJzdGFydF91cmwiOiAiLi8iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiNGM0Y0RjYiLAogICJ0aGVtZV9jb2xvciI6ICIjNEY0NkU1IiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSFN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzQwMzBiOCIgZD0iTTEyIDJjNS41MjMgMCAxMCA0LjQ3NyAxMCAxMGMwIDUuNTIzLTQuNDc3IDEwLTEwIDEwUzIgMTcuNTIzIDIgMTJhMTAgMTAgMCAwMS02IDMuNSIgIHN0eWxlPSJmaWxsOiNmYmEzMzYiLz48cGF0aCBkPSJtMTYgMTdjMCAyLjIgMCA0IDAgNCAyLjIgMCA0IDAgNCAwLTQuNSAwLTggMC04LTQuNSAwLTggMC04IDAgNC41IDAgOCIgLz48L3N2Zy4+IiwKICAgICAgInNpemVzIjogIjE5MngxOTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0KfQo=">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
-    <link rel="apple-touch-icon" href="assets/fuel.jpg">
     <!-- PWA & Icon Setup END -->
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -23,279 +28,350 @@
             theme: {
                 extend: {
                     colors: {
-                        'primary': '#4F46E5', // Indigo 600
+                        'primary': '#6366F1', // Indigo 500
+                        'primary-dark': '#4F46E5', // Indigo 600
                         'secondary': '#10B981', // Emerald 500
-                        'dark-bg': '#1F2937', // Gray 800
-                        'light-card': '#F9FAFB', // Gray 50
+                        'dark-bg': '#0F172A', // Slate 900
+                        'light-card': '#F8FAFC', // Slate 50
+                        'accent': '#8B5CF6', // Violet 500
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
                     },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'glow': '0 0 15px rgba(99, 102, 241, 0.3)',
+                    }
                 }
             }
         }
     </script>
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #F3F4F6; /* Gray 100 */
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #F1F5F9; /* Slate 100 */
         }
         /* Custom scrollbar for log table */
         #trip-log-table-container::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
+            height: 6px;
         }
         #trip-log-table-container::-webkit-scrollbar-thumb {
-            background: #9CA3AF;
-            border-radius: 4px;
+            background: #CBD5E1;
+            border-radius: 10px;
         }
         #trip-log-table-container::-webkit-scrollbar-track {
-            background: #E5E7EB;
+            background: transparent;
         }
-        .loading-overlay {
-            background-color: rgba(255,255,255,0.7);
-            backdrop-filter: blur(2px);
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #4F46E5 0%, #8B5CF6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
-<body class="min-h-screen pb-10">
+<body class="min-h-screen pb-20 bg-slate-50 selection:bg-indigo-100 selection:text-indigo-900">
 
     <!-- SETUP HELP MODAL -->
-    <div id="setup-modal" class="fixed inset-0 bg-black/80 z-[110] hidden flex flex-col items-center justify-center p-6 backdrop-blur-sm">
-        <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-lg w-full text-left space-y-6 border border-gray-100 relative">
-            <button id="close-setup-btn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+    <div id="setup-modal" class="fixed inset-0 bg-slate-900/60 z-[110] hidden flex flex-col items-center justify-center p-6 backdrop-blur-sm transition-all">
+        <div class="bg-white p-8 rounded-3xl shadow-2xl max-w-lg w-full text-left space-y-6 border border-white/50 relative transform scale-100 transition-transform">
+            <button id="close-setup-btn" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
             
-            <div class="flex items-center space-x-3 text-red-600">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                </svg>
-                <h2 class="text-2xl font-bold">Connection Issue Detected</h2>
+            <div class="flex items-center space-x-4 text-rose-500">
+                <div class="p-3 bg-rose-50 rounded-2xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">Connection Issue</h2>
             </div>
             
-            <p class="text-gray-600">The app cannot save data. This usually means the <b>Firestore Database</b> has not been created in your Firebase Console yet.</p>
+            <p class="text-slate-600 leading-relaxed">The app cannot save data. This usually means the <b>Firestore Database</b> has not been created in your Firebase Console yet.</p>
             
-            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 text-sm space-y-3">
-                <h3 class="font-bold text-gray-800">How to Fix (Required):</h3>
-                <ol class="list-decimal list-inside space-y-2 text-gray-700">
-                    <li>Go to the <a href="https://console.firebase.google.com/" target="_blank" class="text-primary underline font-medium">Firebase Console</a>.</li>
+            <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100 text-sm space-y-3">
+                <h3 class="font-bold text-slate-800 uppercase tracking-wide text-xs">How to Fix (Required):</h3>
+                <ol class="list-decimal list-inside space-y-2 text-slate-600">
+                    <li>Go to the <a href="https://console.firebase.google.com/" target="_blank" class="text-primary underline font-semibold decoration-2 underline-offset-2">Firebase Console</a>.</li>
                     <li>Select your project <b>(milege-track)</b>.</li>
                     <li>In the left menu, click <b>Build</b> -> <b>Firestore Database</b>.</li>
                     <li>Click the <b>Create Database</b> button.</li>
                     <li>Select a location (e.g., <i>nam5 (us-central)</i>) and click Next.</li>
-                    <li><b>IMPORTANT:</b> Choose <b>Start in test mode</b> (allows read/write).</li>
+                    <li><b>IMPORTANT:</b> Choose <b>Start in test mode</b>.</li>
                     <li>Click <b>Create</b>.</li>
                 </ol>
             </div>
             
-            <button id="retry-connection-btn" class="w-full py-3 bg-primary text-white rounded-lg font-bold hover:bg-indigo-700 transition shadow-lg">
+            <button id="retry-connection-btn" class="w-full py-3.5 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-bold hover:shadow-lg hover:shadow-indigo-500/30 transition-all active:scale-[0.98]">
                 I've Done This - Retry Connection
             </button>
         </div>
     </div>
 
-    <!-- LOGIN SCREEN (Visible by default, hidden on auth) -->
-    <div id="login-screen" class="fixed inset-0 bg-gray-50 z-[100] flex flex-col items-center justify-center p-6 transition-opacity duration-500 overflow-y-auto">
-        <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full text-center space-y-6 border border-gray-100 my-auto">
-            <div class="flex justify-center">
-                <div class="p-3 bg-primary/10 rounded-full">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm-2.633 10.737c-.676.317-1.213-.143-1.01-.869l2.093-7.604c.203-.727.98-1.085 1.706-.883l1.558.432c-.944.682-1.653 1.512-1.653 2.349-.001.285.055.558.159.807l.891 1.235c-.983.585-1.647 1.972-1.647 3.534 0 .289.063.558.176.808l-.842.557 2.345 2.916.467-.37v2.922h2v-2.922l.467.369 2.345-2.916-.842-.557c.113-.25.176-.519.176-.808 0-1.562-.664-2.949-1.647-3.535l.891-1.235c.104-.249.159-.52.159-.807 0-.837-.71-1.667-1.655-2.349l1.559-.432c.73-.201 1.509-.167 1.711.562l-.703 2.559c.203.726-.328 1.186-1.01.869l-.432-.413c-.188-.18-.339-.314-.454-.445-.669.468-1.227.727-1.558.727-.07 0-.14-.024-.204-.074l-.473-.382-.48.382-.47-.067z" />
-                    </svg>
+    <!-- LOGIN SCREEN -->
+    <div id="login-screen" class="fixed inset-0 bg-slate-50 z-[100] flex flex-col items-center justify-center p-6 transition-all duration-500 overflow-y-auto">
+        <div class="glass-panel p-8 sm:p-10 rounded-[2rem] shadow-soft max-w-md w-full text-center space-y-8 my-auto relative overflow-hidden">
+            <!-- Decorative blur -->
+            <div class="absolute -top-20 -right-20 w-40 h-40 bg-indigo-100 rounded-full blur-3xl opacity-60"></div>
+            <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-violet-100 rounded-full blur-3xl opacity-60"></div>
+            
+            <div class="relative">
+                <div class="flex justify-center mb-6">
+                    <div class="p-4 bg-gradient-to-br from-indigo-50 to-white rounded-2xl shadow-sm border border-indigo-50">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <h1 class="text-2xl font-extrabold text-gray-900 tracking-tight">Mileage Manager</h1>
-                <p class="mt-1 text-sm text-gray-500">Sign in to access the shared database.</p>
+                <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">Mileage Manager</h1>
+                <p class="mt-2 text-slate-500">Sign in to access your shared tracking database.</p>
             </div>
             
-            <button id="google-login-btn" class="w-full group relative flex justify-center items-center py-2.5 px-4 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-200 shadow-sm">
-                <div class="flex items-center">
+            <div class="space-y-4 relative">
+                <button id="google-login-btn" class="w-full group flex justify-center items-center py-3.5 px-4 border border-slate-200 text-sm font-semibold rounded-xl text-slate-700 bg-white hover:bg-slate-50 hover:border-slate-300 focus:outline-none focus:ring-4 focus:ring-indigo-50 transition-all duration-200">
                     <img class="h-5 w-5 mr-3" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo">
-                    <span class="text-base">Sign in with Google</span>
-                </div>
-            </button>
+                    <span>Continue with Google</span>
+                </button>
 
-            <!-- Divider -->
-            <div class="relative w-full">
-                <div class="absolute inset-0 flex items-center">
-                    <div class="w-full border-t border-gray-200"></div>
-                </div>
-                <div class="relative flex justify-center text-xs uppercase">
-                    <span class="px-2 bg-white text-gray-400">Or with Email</span>
-                </div>
-            </div>
-
-            <!-- Email/Password Form -->
-            <form id="email-auth-form" class="w-full space-y-4">
-                <div class="text-left">
-                    <label for="email-input" class="block text-xs font-medium text-gray-700 mb-1">Email address</label>
-                    <input id="email-input" name="email" type="email" autocomplete="email" required class="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" placeholder="you@example.com">
-                </div>
-                <div class="text-left">
-                    <label for="password-input" class="block text-xs font-medium text-gray-700 mb-1">Password</label>
-                    <input id="password-input" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" placeholder="••••••••">
+                <div class="relative w-full py-2">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-slate-100"></div>
+                    </div>
+                    <div class="relative flex justify-center text-xs uppercase tracking-wider font-semibold">
+                        <span class="px-3 bg-white text-slate-400">Or with Email</span>
+                    </div>
                 </div>
 
-                <div class="flex space-x-3 pt-2">
-                    <button id="email-login-btn" type="button" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-primary hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors shadow-md">
+                <form id="email-auth-form" class="space-y-4">
+                    <!-- NAME INPUT (Hidden by default, shown for register) -->
+                    <div id="name-container" class="text-left space-y-1 hidden">
+                        <label for="name-input" class="block text-xs font-semibold text-slate-500 ml-1">Full Name</label>
+                        <input id="name-input" name="name" type="text" autocomplete="name" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder-slate-400 text-sm" placeholder="John Doe">
+                    </div>
+
+                    <div class="text-left space-y-1">
+                        <label for="email-input" class="block text-xs font-semibold text-slate-500 ml-1">Email address</label>
+                        <input id="email-input" name="email" type="email" autocomplete="email" required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder-slate-400 text-sm" placeholder="name@example.com">
+                    </div>
+                    <div class="text-left space-y-1">
+                        <label for="password-input" class="block text-xs font-semibold text-slate-500 ml-1">Password</label>
+                        <input id="password-input" name="password" type="password" autocomplete="current-password" required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder-slate-400 text-sm" placeholder="••••••••">
+                    </div>
+
+                    <button id="auth-action-btn" type="submit" class="w-full py-3.5 px-4 border border-transparent text-sm font-bold rounded-xl text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-4 focus:ring-indigo-100 transition-all shadow-lg shadow-indigo-500/20 active:scale-[0.98]">
                         Sign In
                     </button>
-                    <button id="email-register-btn" type="button" class="group relative w-full flex justify-center py-2 px-4 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors shadow-sm">
-                        Register
+                </form>
+
+                <div class="pt-4 text-center space-y-4">
+                    <p class="text-sm text-slate-500">
+                        <span id="auth-toggle-text">Don't have an account?</span>
+                        <button id="auth-toggle-btn" class="font-bold text-primary hover:text-primary-dark ml-1 transition-colors">
+                            Register
+                        </button>
+                    </p>
+                    <button id="guest-login-btn" class="text-xs font-medium text-slate-400 hover:text-primary transition-colors">
+                        Continue as Guest (Limited Access)
                     </button>
                 </div>
-            </form>
-
-            <div class="pt-2">
-                <button id="guest-login-btn" class="text-xs text-gray-400 hover:text-gray-600 underline">
-                    Continue as Guest (Limited Access)
-                </button>
             </div>
         </div>
     </div>
 
-    <!-- MAIN APP CONTENT (Hidden by default, shown on auth) -->
-    <div id="main-app" class="max-w-4xl mx-auto space-y-6 p-4 sm:p-6 md:p-10 relative hidden">
+    <!-- MAIN APP CONTENT -->
+    <div id="main-app" class="max-w-5xl mx-auto space-y-8 p-4 sm:p-6 md:p-8 relative hidden">
         
-        <!-- User Info & Logout (Replaces App ID Display) -->
-        <div class="absolute top-2 right-4 flex items-center space-x-3">
-            <div class="flex items-center space-x-2">
-                <span id="db-status" class="w-2 h-2 rounded-full bg-yellow-500 animate-pulse" title="Connecting..."></span>
-                <span class="text-xs text-gray-500 font-medium hidden sm:block" id="user-name-display"></span>
-            </div>
-            <button id="logout-btn" class="text-xs text-red-500 font-medium hover:text-red-700 border border-red-200 px-2 py-1 rounded hover:bg-red-50 transition">
-                Sign Out
-            </button>
+        <!-- Top Bar -->
+        <div class="flex justify-between items-center bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+             <div class="flex items-center space-x-3">
+                 <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                 </div>
+                 <h1 class="text-xl font-bold text-slate-800 tracking-tight">Mileage<span class="text-primary">Manager</span></h1>
+             </div>
+             
+             <div class="flex items-center space-x-4">
+                <!-- Add Install Button Here -->
+                <button id="header-install-btn" class="hidden p-2 text-slate-400 hover:text-primary hover:bg-indigo-50 rounded-lg transition-colors" title="Install App">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                </button>
+
+                <div class="hidden sm:flex items-center space-x-2 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-100">
+                    <span id="db-status" class="w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></span>
+                    <span class="text-xs font-semibold text-slate-500 truncate max-w-[120px]" id="user-name-display">...</span>
+                </div>
+                <button id="logout-btn" class="p-2 text-slate-400 hover:text-rose-500 hover:bg-rose-50 rounded-lg transition-colors" title="Sign Out">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                </button>
+             </div>
         </div>
 
-        <!-- Header -->
-        <header class="text-center mb-8">
-            <h1 class="text-4xl font-extrabold text-primary">Mileage Manager</h1>
-            <p class="mt-2 text-gray-600">Public Shared Fuel Tracker</p>
-        </header>
-
         <!-- Statistics Overview -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="bg-white p-4 rounded-xl shadow-md border border-gray-100 flex flex-col items-center">
-                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Total Spent</span>
-                <span id="stat-total-cost" class="text-2xl font-bold text-gray-800 mt-1">...</span>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-3xl shadow-soft border border-slate-100 flex items-center space-x-4 hover:-translate-y-1 transition-transform duration-300">
+                <div class="p-3 bg-emerald-50 text-emerald-600 rounded-2xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                </div>
+                <div>
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Spent</p>
+                    <p id="stat-total-cost" class="text-2xl font-extrabold text-slate-800 mt-0.5">...</p>
+                </div>
             </div>
-            <div class="bg-white p-4 rounded-xl shadow-md border border-gray-100 flex flex-col items-center">
-                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Avg Mileage</span>
-                <span id="stat-avg-mileage" class="text-2xl font-bold text-primary mt-1">... <span class="text-sm font-normal text-gray-500">km/L</span></span>
+            
+            <div class="bg-white p-6 rounded-3xl shadow-soft border border-slate-100 flex items-center space-x-4 hover:-translate-y-1 transition-transform duration-300">
+                <div class="p-3 bg-indigo-50 text-indigo-600 rounded-2xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+                </div>
+                <div>
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Avg Mileage</p>
+                    <p id="stat-avg-mileage" class="text-2xl font-extrabold text-slate-800 mt-0.5">... <span class="text-sm font-semibold text-slate-400">km/L</span></p>
+                </div>
             </div>
-            <div class="bg-white p-4 rounded-xl shadow-md border border-gray-100 flex flex-col items-center">
-                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Total Distance</span>
-                <span id="stat-total-distance" class="text-2xl font-bold text-gray-800 mt-1">... <span class="text-sm font-normal text-gray-500">km</span></span>
+            
+            <div class="bg-white p-6 rounded-3xl shadow-soft border border-slate-100 flex items-center space-x-4 hover:-translate-y-1 transition-transform duration-300">
+                <div class="p-3 bg-blue-50 text-blue-600 rounded-2xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0121 18.382V7.618a1 1 0 01-.553-.894L15 4m0 13V4m0 0L9 7" /></svg>
+                </div>
+                <div>
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Distance</p>
+                    <p id="stat-total-distance" class="text-2xl font-extrabold text-slate-800 mt-0.5">... <span class="text-sm font-semibold text-slate-400">km</span></p>
+                </div>
             </div>
         </div>
 
         <!-- Main Grid Layout -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-            <!-- Input & Price Column (Span 2) -->
+            <!-- Left Column: Input Forms -->
             <div class="lg:col-span-2 space-y-6">
 
-                <!-- 1. Fuel Price Setting Card -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-                    <h2 class="text-lg font-semibold text-gray-800 flex items-center mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.244-4.243a8 8 0111.314 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                        Current Fuel Price (Shared)
-                    </h2>
-                    <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
-                        <input type="number" id="fuel-price" placeholder="e.g., 105.50" step="0.01" class="flex-grow p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-150" />
-                        <button id="save-price-btn" class="w-full sm:w-auto px-6 py-3 bg-primary text-white font-medium rounded-lg shadow-md hover:bg-primary/90 transition duration-150 transform hover:scale-[1.01]">
-                            Save
-                        </button>
+                <!-- Fuel Price Card -->
+                <div class="bg-white p-6 rounded-3xl shadow-soft border border-slate-100 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-full blur-2xl -mr-16 -mt-16 opacity-50"></div>
+                    
+                    <div class="relative z-10">
+                        <h2 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-4 flex items-center">
+                           Global Settings
+                        </h2>
+                        <div class="flex flex-col sm:flex-row gap-4 items-end">
+                            <div class="w-full">
+                                <label class="block text-xs font-semibold text-slate-500 mb-1.5 ml-1">Current Fuel Price</label>
+                                <div class="relative">
+                                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-semibold">$</span>
+                                    <input type="number" id="fuel-price" placeholder="0.00" step="0.01" class="w-full pl-8 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-100 focus:border-primary transition-all font-semibold text-slate-800">
+                                </div>
+                            </div>
+                            <button id="save-price-btn" class="w-full sm:w-auto px-8 py-3 bg-slate-800 text-white font-bold rounded-xl hover:bg-slate-900 transition shadow-lg active:scale-95">
+                                Save
+                            </button>
+                        </div>
+                        <p id="current-price-display" class="mt-3 text-xs font-medium text-slate-400"></p>
                     </div>
-                    <p id="current-price-display" class="mt-3 text-sm font-medium text-gray-600"></p>
                 </div>
 
-                <!-- 2. Trip Entry Card -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 relative">
+                <!-- Trip Entry Card -->
+                <div class="bg-white p-8 rounded-3xl shadow-lg shadow-indigo-100/50 border border-slate-100 relative">
                     <!-- Loading overlay for trip entry -->
-                    <div id="trip-loading" class="hidden absolute inset-0 loading-overlay z-10 flex items-center justify-center rounded-xl">
-                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                    <div id="trip-loading" class="hidden absolute inset-0 bg-white/80 backdrop-blur-sm z-20 flex items-center justify-center rounded-3xl transition-opacity">
+                        <div class="animate-spin rounded-full h-10 w-10 border-4 border-indigo-100 border-t-primary"></div>
                     </div>
 
-                    <h2 class="text-lg font-semibold text-gray-800 flex items-center mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                        New Fuel-up Entry
-                    </h2>
-                    <div class="space-y-4">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <!-- New Date Input -->
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-extrabold text-slate-800 flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-lg bg-indigo-50 text-primary flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+                            </span>
+                            New Log Entry
+                        </h2>
+                    </div>
+
+                    <div class="space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                             <div>
-                                <label for="trip-date" class="block text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">Date</label>
-                                <input type="date" id="trip-date" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-150">
+                                <label for="trip-date" class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-1.5 ml-1">Date</label>
+                                <input type="date" id="trip-date" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-100 focus:border-primary transition-all text-slate-800 font-medium">
                             </div>
-                            <!-- Odometer Input -->
                             <div>
-                                <label for="odo-reading" class="block text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">Odometer (km)</label>
-                                <input type="number" id="odo-reading" placeholder="e.g., 15240" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-150">
-                                <p id="last-odo-display" class="mt-1 text-xs text-gray-500 text-right"></p>
+                                <label for="odo-reading" class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-1.5 ml-1">Odometer (km)</label>
+                                <input type="number" id="odo-reading" placeholder="e.g., 15240" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-100 focus:border-primary transition-all text-slate-800 font-medium">
+                                <p id="last-odo-display" class="mt-1.5 text-xs font-semibold text-primary text-right"></p>
                             </div>
                         </div>
                          
-                        <!-- Amount Paid Input -->
                         <div>
-                            <label for="amount-paid" class="block text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">Amount Paid</label>
-                            <input type="number" id="amount-paid" placeholder="e.g., 3000" step="0.01" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-150">
+                            <label for="amount-paid" class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-1.5 ml-1">Amount Paid</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">$</span>
+                                <input type="number" id="amount-paid" placeholder="0.00" step="0.01" class="w-full pl-8 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-100 focus:border-primary transition-all text-slate-800 font-medium">
+                            </div>
                         </div>
 
                         <!-- Liters Display -->
-                        <div class="p-3 bg-secondary/5 rounded-lg border border-secondary/20 flex justify-between items-center">
-                            <span class="text-sm font-medium text-gray-600">Est. Liters:</span>
-                            <span class="text-lg font-bold text-secondary"><span id="liters-purchased-display">0.00</span> L</span>
+                        <div class="px-5 py-4 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl border border-emerald-100 flex justify-between items-center">
+                            <span class="text-sm font-semibold text-emerald-800">Est. Volume</span>
+                            <span class="text-xl font-extrabold text-emerald-600"><span id="liters-purchased-display">0.00</span> <span class="text-sm font-bold text-emerald-400">L</span></span>
                         </div>
 
                         <!-- Save Button -->
-                        <button id="save-trip-btn" class="w-full px-6 py-3 bg-secondary text-white font-semibold rounded-lg shadow-md hover:bg-secondary/90 transition duration-150 transform hover:scale-[1.005]">
-                            Calculate & Save Trip
+                        <button id="save-trip-btn" class="w-full py-4 bg-gradient-to-r from-primary to-accent text-white font-bold text-lg rounded-xl shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/40 hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.98]">
+                            Add Entry
                         </button>
                     </div>
                 </div>
             </div>
             
-            <!-- Results & Charts Column (Span 1) -->
+            <!-- Right Column: Results & Charts -->
             <div class="lg:col-span-1 space-y-6">
 
                 <!-- 3. Current Trip Results Card -->
-                <div class="bg-primary text-white p-6 rounded-xl shadow-lg border border-primary/50 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4 opacity-10">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div class="bg-gradient-to-br from-indigo-600 to-violet-700 text-white p-8 rounded-3xl shadow-xl shadow-indigo-500/20 border border-white/10 relative overflow-hidden">
+                    <!-- Decor -->
+                    <div class="absolute top-0 right-0 p-8 opacity-10 transform translate-x-4 -translate-y-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                         </svg>
                     </div>
-                    <h2 class="text-lg font-semibold mb-4 border-b border-white/30 pb-2 relative z-10">Last Trip Performance</h2>
                     
-                    <div class="space-y-4 relative z-10">
+                    <h2 class="text-sm font-bold text-indigo-100 uppercase tracking-widest mb-6 border-b border-white/20 pb-4 relative z-10">Last Trip Analysis</h2>
+                    
+                    <div class="space-y-6 relative z-10">
                         <div>
-                            <p class="text-xs uppercase tracking-wide opacity-80">Distance Traveled</p>
-                            <p id="result-distance" class="text-4xl font-extrabold">0</p>
-                            <p class="text-sm opacity-80">kilometers</p>
-                        </div>
-                        <div>
-                            <p class="text-xs uppercase tracking-wide opacity-80">Fuel Efficiency</p>
-                            <p id="result-mileage" class="text-4xl font-extrabold text-green-300">0.00</p>
-                            <p class="text-sm opacity-80">km / Liter</p>
+                            <div class="flex items-baseline gap-2">
+                                <p id="result-distance" class="text-5xl font-black tracking-tight">0</p>
+                                <span class="text-lg font-medium text-indigo-200">km</span>
+                            </div>
+                            <p class="text-xs font-bold text-indigo-300 uppercase tracking-wider mt-1">Distance Traveled</p>
                         </div>
                         
-                        <div id="first-trip-message" class="hidden pt-4 border-t border-white/30 text-xs opacity-90 italic">
-                            <p>Once you save your next trip, this calculation will appear!</p>
+                        <div>
+                             <div class="flex items-baseline gap-2">
+                                <p id="result-mileage" class="text-5xl font-black tracking-tight text-emerald-300">0.00</p>
+                                <span class="text-lg font-medium text-emerald-200/80">km/L</span>
+                            </div>
+                            <p class="text-xs font-bold text-indigo-300 uppercase tracking-wider mt-1">Fuel Efficiency</p>
+                        </div>
+                        
+                        <div id="first-trip-message" class="hidden pt-4 border-t border-white/20 text-xs font-medium text-indigo-200">
+                            <p>Calculate stats after your next fill-up!</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- 4. Chart Card -->
-                <div class="bg-white p-4 rounded-xl shadow-lg border border-gray-200 h-64 flex flex-col">
-                    <h3 class="text-sm font-semibold text-gray-700 mb-2">Efficiency Trend (km/L)</h3>
+                <div class="bg-white p-6 rounded-3xl shadow-soft border border-slate-100 flex flex-col h-64">
+                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Efficiency Trend</h3>
                     <div class="flex-grow relative w-full h-full">
                          <canvas id="mileageChart"></canvas>
                     </div>
@@ -306,75 +382,75 @@
         </div>
 
         <!-- 5. Trip History Log -->
-        <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
-                <h2 class="text-xl font-semibold text-gray-800 flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2m-7 7h3" />
-                    </svg>
-                    Trip History
-                </h2>
-                <div class="flex space-x-2 mt-2 sm:mt-0">
-                    <button id="export-btn" class="px-3 py-1.5 bg-gray-100 text-gray-600 text-sm font-medium rounded hover:bg-gray-200 transition">
+        <div class="bg-white rounded-3xl shadow-soft border border-slate-100 overflow-hidden">
+            <div class="p-6 border-b border-slate-50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <h2 class="text-lg font-extrabold text-slate-800">History Log</h2>
+                <div class="flex space-x-2">
+                    <button id="export-btn" class="px-4 py-2 bg-slate-50 text-slate-600 text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-slate-100 transition border border-slate-200">
                         Export CSV
                     </button>
-                    <button id="install-pwa-btn" class="px-3 py-1.5 bg-gray-100 text-primary text-sm font-medium rounded hover:bg-gray-200 transition">
+                    <button id="install-pwa-btn" class="px-4 py-2 bg-indigo-50 text-primary text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-indigo-100 transition border border-indigo-100">
                         Install App
                     </button>
                 </div>
             </div>
 
-            <div id="trip-log-table-container" class="overflow-x-auto h-72 rounded-lg border border-gray-100 relative">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead>
-                        <tr class="text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50 sticky top-0">
-                            <th class="px-4 py-3">Date</th>
-                            <th class="px-4 py-3">Odo (km)</th>
-                            <th class="px-4 py-3">Dist (km)</th>
-                            <th class="px-4 py-3">Amount</th>
-                            <th class="px-4 py-3">Liters</th>
-                            <th class="px-4 py-3">Km/L</th>
-                            <th class="px-4 py-3 text-right">Actions</th>
+            <div id="trip-log-table-container" class="overflow-x-auto max-h-[500px] relative">
+                <table class="min-w-full divide-y divide-slate-100">
+                    <thead class="bg-slate-50/80 backdrop-blur sticky top-0 z-10">
+                        <tr class="text-left text-xs font-bold text-slate-400 uppercase tracking-wider">
+                            <th class="px-6 py-4">Date</th>
+                            <th class="px-6 py-4">Odo</th>
+                            <th class="px-6 py-4">Dist</th>
+                            <th class="px-6 py-4">Cost</th>
+                            <th class="px-6 py-4">Vol</th>
+                            <th class="px-6 py-4">Eff</th>
+                            <th class="px-6 py-4 text-right"></th>
                         </tr>
                     </thead>
-                    <tbody id="trip-log-body" class="bg-white divide-y divide-gray-200 text-sm">
+                    <tbody id="trip-log-body" class="bg-white divide-y divide-slate-50 text-sm font-medium text-slate-600">
                         <!-- Log entries will be inserted here -->
                     </tbody>
                 </table>
-                <p id="no-data-message" class="text-center py-10 text-gray-400 hidden">No trips recorded yet.</p>
-                <div id="log-loading" class="absolute inset-0 bg-white flex items-center justify-center z-10">
-                    <span class="text-gray-400 animate-pulse">Syncing data...</span>
+                
+                <p id="no-data-message" class="text-center py-12 text-slate-400 hidden">No trips recorded yet.</p>
+                
+                <div id="log-loading" class="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-10 transition-opacity">
+                    <div class="flex flex-col items-center">
+                         <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mb-2"></div>
+                         <span class="text-xs font-bold text-slate-400 tracking-wide">SYNCING...</span>
+                    </div>
                 </div>
             </div>
             
-            <div class="mt-4 flex justify-end">
-                 <button id="clear-data-btn" class="text-xs text-red-400 hover:text-red-600 underline">
-                    Clear Shared Database
+             <div class="p-4 bg-slate-50 border-t border-slate-100 flex justify-end">
+                 <button id="clear-data-btn" class="text-xs font-bold text-rose-400 hover:text-rose-600 transition uppercase tracking-wide">
+                    Clear Database
                 </button>
             </div>
         </div>
 
         <!-- Custom Alert/Modal Area -->
-        <div id="alert-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 hidden z-50 items-center justify-center p-4">
-            <div class="bg-white p-6 rounded-xl shadow-2xl max-w-sm w-full space-y-4 transform transition-all scale-100">
-                <h3 id="alert-title" class="text-xl font-bold text-gray-800"></h3>
-                <p id="alert-message" class="text-gray-600 break-words"></p>
-                <button id="alert-close-btn" class="w-full py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition">
-                    Got it
+        <div id="alert-modal" class="fixed inset-0 bg-slate-900/50 z-[120] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-opacity">
+            <div class="bg-white p-6 rounded-2xl shadow-2xl max-w-sm w-full space-y-4 transform scale-100 transition-transform border border-white/20">
+                <h3 id="alert-title" class="text-lg font-bold text-slate-800"></h3>
+                <p id="alert-message" class="text-slate-600 text-sm leading-relaxed"></p>
+                <button id="alert-close-btn" class="w-full py-2.5 bg-slate-800 text-white font-bold rounded-xl hover:bg-slate-900 transition">
+                    Dismiss
                 </button>
             </div>
         </div>
 
         <!-- Confirmation Modal -->
-        <div id="confirm-clear-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 hidden z-50 items-center justify-center p-4">
-            <div class="bg-white p-6 rounded-xl shadow-2xl max-w-sm w-full space-y-4">
-                <h3 class="text-xl font-bold text-red-600">Confirmation Required</h3>
-                <p class="text-gray-600">Are you sure? This action cannot be undone.</p>
-                <div class="flex justify-end space-x-3">
-                    <button id="confirm-no-btn" class="py-2 px-4 bg-gray-300 text-gray-800 font-medium rounded-lg hover:bg-gray-400 transition">
+        <div id="confirm-clear-modal" class="fixed inset-0 bg-slate-900/50 z-[120] hidden flex items-center justify-center p-4 backdrop-blur-sm">
+            <div class="bg-white p-6 rounded-2xl shadow-2xl max-w-sm w-full space-y-4 border border-white/20">
+                <h3 class="text-lg font-bold text-rose-600">Are you sure?</h3>
+                <p class="text-slate-600 text-sm">This action cannot be undone.</p>
+                <div class="flex justify-end space-x-3 pt-2">
+                    <button id="confirm-no-btn" class="py-2 px-4 bg-slate-100 text-slate-700 font-bold text-sm rounded-lg hover:bg-slate-200 transition">
                         Cancel
                     </button>
-                    <button id="confirm-yes-btn" class="py-2 px-4 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600 transition">
+                    <button id="confirm-yes-btn" class="py-2 px-4 bg-rose-500 text-white font-bold text-sm rounded-lg hover:bg-rose-600 transition shadow-lg shadow-rose-500/30">
                         Confirm
                     </button>
                 </div>
@@ -382,31 +458,31 @@
         </div>
         
         <!-- EDIT TRIP MODAL -->
-        <div id="edit-trip-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 hidden z-50 items-center justify-center p-4">
-            <div class="bg-white p-6 rounded-xl shadow-2xl max-w-md w-full space-y-5">
-                <h3 class="text-xl font-bold text-primary border-b pb-2">Edit Trip Entry</h3>
+        <div id="edit-trip-modal" class="fixed inset-0 bg-slate-900/50 z-[120] hidden flex items-center justify-center p-4 backdrop-blur-sm">
+            <div class="bg-white p-8 rounded-3xl shadow-2xl max-w-md w-full space-y-6 relative border border-white/20">
+                <h3 class="text-xl font-bold text-slate-800 border-b border-slate-100 pb-4">Edit Entry</h3>
                 <input type="hidden" id="edit-trip-id">
 
                 <div class="space-y-4">
                     <div>
-                        <label for="edit-date" class="block text-sm font-medium text-gray-700">Fuel-up Date</label>
-                        <input type="date" id="edit-date" class="mt-1 w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                        <label for="edit-date" class="block text-xs font-bold text-slate-500 uppercase mb-1.5 ml-1">Date</label>
+                        <input type="date" id="edit-date" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 font-medium focus:ring-2 focus:ring-primary/20 focus:border-primary focus:outline-none transition-all">
                     </div>
                     <div>
-                        <label for="edit-odo-reading" class="block text-sm font-medium text-gray-700">Odometer Reading (km)</label>
-                        <input type="number" id="edit-odo-reading" class="mt-1 w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                        <label for="edit-odo-reading" class="block text-xs font-bold text-slate-500 uppercase mb-1.5 ml-1">Odometer</label>
+                        <input type="number" id="edit-odo-reading" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 font-medium focus:ring-2 focus:ring-primary/20 focus:border-primary focus:outline-none transition-all">
                     </div>
                     <div>
-                        <label for="edit-amount-paid" class="block text-sm font-medium text-gray-700">Amount Paid</label>
-                        <input type="number" id="edit-amount-paid" step="0.01" class="mt-1 w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                        <label for="edit-amount-paid" class="block text-xs font-bold text-slate-500 uppercase mb-1.5 ml-1">Amount</label>
+                        <input type="number" id="edit-amount-paid" step="0.01" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 font-medium focus:ring-2 focus:ring-primary/20 focus:border-primary focus:outline-none transition-all">
                     </div>
                 </div>
 
-                <div class="flex justify-end space-x-3 pt-3">
-                    <button id="cancel-edit-btn" class="py-2 px-4 bg-gray-300 text-gray-800 font-medium rounded-lg hover:bg-gray-400 transition">
+                <div class="flex justify-end space-x-3 pt-2">
+                    <button id="cancel-edit-btn" class="py-2.5 px-5 bg-slate-100 text-slate-600 font-bold text-sm rounded-xl hover:bg-slate-200 transition">
                         Cancel
                     </button>
-                    <button id="update-edit-btn" class="py-2 px-4 bg-secondary text-white font-medium rounded-lg shadow-md hover:bg-secondary/90 transition">
+                    <button id="update-edit-btn" class="py-2.5 px-5 bg-primary text-white font-bold text-sm rounded-xl shadow-lg shadow-indigo-500/20 hover:bg-primary-dark transition">
                         Update
                     </button>
                 </div>
@@ -418,7 +494,7 @@
     <!-- Firebase Integration -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken, GoogleAuthProvider, signInWithPopup, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken, GoogleAuthProvider, signInWithPopup, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, doc, setDoc, addDoc, deleteDoc, updateDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
 
@@ -459,8 +535,9 @@
         let deferredPrompt; 
         let mileageChartInstance = null;
         let currentUser = null;
-        let currentTrips = []; // Local mirror of Firestore data
+        let currentTrips = []; 
         let currentFuelPrice = 0;
+        let isRegistering = false; // New state for toggle
 
         // --- DOM ELEMENTS ---
         const Elements = { 
@@ -472,14 +549,19 @@
             guestLoginBtn: document.getElementById('guest-login-btn'),
             
             // Email Auth
+            emailAuthForm: document.getElementById('email-auth-form'),
+            nameContainer: document.getElementById('name-container'),
+            nameInput: document.getElementById('name-input'),
             emailInput: document.getElementById('email-input'),
             passwordInput: document.getElementById('password-input'),
-            emailLoginBtn: document.getElementById('email-login-btn'),
-            emailRegisterBtn: document.getElementById('email-register-btn'),
+            authActionBtn: document.getElementById('auth-action-btn'),
+            authToggleBtn: document.getElementById('auth-toggle-btn'),
+            authToggleText: document.getElementById('auth-toggle-text'),
 
             logoutBtn: document.getElementById('logout-btn'),
             userNameDisplay: document.getElementById('user-name-display'),
             dbStatus: document.getElementById('db-status'),
+            headerInstallBtn: document.getElementById('header-install-btn'), // New element for top bar install button
 
             // Inputs
             fuelPriceInput: document.getElementById('fuel-price'),
@@ -531,14 +613,74 @@
             cancelEditBtn: document.getElementById('cancel-edit-btn'),
 
             // Setup Modal
-            setupModal: document.getElementById('setup-modal'), // Add this
-            closeSetupBtn: document.getElementById('close-setup-btn'), // Add this
-            retryConnectionBtn: document.getElementById('retry-connection-btn'), // Add this
+            setupModal: document.getElementById('setup-modal'), 
+            closeSetupBtn: document.getElementById('close-setup-btn'), 
+            retryConnectionBtn: document.getElementById('retry-connection-btn'), 
         };
 
         // --- AUTHENTICATION LOGIC ---
         
         const provider = new GoogleAuthProvider();
+
+        function toggleAuthMode() {
+            isRegistering = !isRegistering;
+            if (isRegistering) {
+                Elements.nameContainer.classList.remove('hidden');
+                Elements.authActionBtn.textContent = "Create Account";
+                Elements.authToggleText.textContent = "Already have an account?";
+                Elements.authToggleBtn.textContent = "Sign In";
+            } else {
+                Elements.nameContainer.classList.add('hidden');
+                Elements.authActionBtn.textContent = "Sign In";
+                Elements.authToggleText.textContent = "Don't have an account?";
+                Elements.authToggleBtn.textContent = "Register";
+            }
+        }
+
+        const handleAuthSubmit = async (e) => {
+            e.preventDefault();
+            const email = Elements.emailInput.value;
+            const password = Elements.passwordInput.value;
+            const name = Elements.nameInput.value;
+
+            if (!email || !password) {
+                return showAlert("Input Error", "Please fill in all required fields.");
+            }
+
+            // Disable button
+            const originalText = Elements.authActionBtn.textContent;
+            Elements.authActionBtn.textContent = "Processing...";
+            Elements.authActionBtn.disabled = true;
+
+            try {
+                if (isRegistering) {
+                    // Registration Logic
+                    if (password.length < 6) throw new Error("Password must be at least 6 characters.");
+                    if (!name) throw new Error("Please enter your full name.");
+
+                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                    // Update Profile Name
+                    await updateProfile(userCredential.user, { displayName: name });
+                    // Force refresh user to get display name immediately
+                    await userCredential.user.reload();
+                    currentUser = auth.currentUser;
+                } else {
+                    // Login Logic
+                    await signInWithEmailAndPassword(auth, email, password);
+                }
+            } catch (error) {
+                console.error("Auth Error:", error);
+                let msg = error.message;
+                if (error.code === 'auth/email-already-in-use') msg = "That email is already registered.";
+                if (error.code === 'auth/wrong-password') msg = "Incorrect password.";
+                if (error.code === 'auth/user-not-found') msg = "No account found with that email.";
+                showAlert(isRegistering ? "Registration Failed" : "Login Failed", msg);
+                
+                // Re-enable button
+                Elements.authActionBtn.textContent = originalText;
+                Elements.authActionBtn.disabled = false;
+            }
+        };
 
         const handleGoogleLogin = async () => {
             try {
@@ -569,56 +711,6 @@
                 } else {
                     showAlert("Guest Login Failed", error.message);
                 }
-            }
-        };
-
-        const handleEmailLogin = async () => {
-            const email = Elements.emailInput.value;
-            const password = Elements.passwordInput.value;
-            
-            if (!email || !password) {
-                return showAlert("Input Error", "Please enter both email and password.");
-            }
-
-            try {
-                Elements.emailLoginBtn.textContent = "Signing In...";
-                console.log("Attempting Email Login...");
-                await signInWithEmailAndPassword(auth, email, password);
-                console.log("Email Login Success");
-            } catch (error) {
-                console.error("Auth Error: " + error.code);
-                showAlert("Login Failed", error.message);
-            } finally {
-                Elements.emailLoginBtn.textContent = "Sign In";
-            }
-        };
-
-        const handleEmailRegister = async () => {
-            const email = Elements.emailInput.value;
-            const password = Elements.passwordInput.value;
-
-            if (!email || !password) {
-                return showAlert("Input Error", "Please enter both email and password.");
-            }
-            
-            if (password.length < 6) {
-                return showAlert("Weak Password", "Password must be at least 6 characters.");
-            }
-
-            try {
-                Elements.emailRegisterBtn.textContent = "Creating...";
-                console.log("Attempting Registration...");
-                await createUserWithEmailAndPassword(auth, email, password);
-                console.log("Registration Success");
-            } catch (error) {
-                console.error("Auth Error: " + error.code);
-                if (error.code === 'auth/operation-not-allowed') {
-                    showAlert("Configuration Error", "Email/Password login is disabled. Enable it in Firebase Console > Authentication.");
-                } else {
-                    showAlert("Registration Failed", error.message);
-                }
-            } finally {
-                Elements.emailRegisterBtn.textContent = "Register";
             }
         };
 
@@ -803,10 +895,10 @@
                 console.log("Fuel Price Saved");
                 
                 btn.textContent = "Saved!";
-                btn.classList.add('bg-green-500');
+                btn.classList.add('bg-emerald-500');
                 setTimeout(() => {
                     btn.textContent = "Save";
-                    btn.classList.remove('bg-green-500');
+                    btn.classList.remove('bg-emerald-500');
                 }, 1500);
             } catch (e) {
                 handleDbError(e);
@@ -922,7 +1014,7 @@
 
             trips.forEach((trip) => {
                 const row = Elements.tripLogBody.insertRow();
-                row.className = 'hover:bg-gray-50 transition duration-100';
+                row.className = 'hover:bg-slate-50 transition duration-150 group';
                 
                 const distanceDisplay = trip.distance > 0 ? trip.distance.toFixed(0) : '-';
                 const mileageDisplay = trip.mileage > 0 ? trip.mileage.toFixed(2) : '-';
@@ -936,34 +1028,39 @@
                 } catch (e) {}
 
                 const cells = [
-                    dateDisplay, 
+                    `<span class="font-semibold text-slate-700">${dateDisplay}</span>`, 
                     trip.odo.toFixed(0),
                     distanceDisplay,
-                    trip.amount.toFixed(0),
+                    `<span class="font-medium text-slate-900">$${trip.amount.toFixed(0)}</span>`,
                     trip.liters.toFixed(1),
-                    mileageDisplay
+                    `<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">${mileageDisplay}</span>`
                 ];
 
-                cells.forEach(text => {
+                cells.forEach(html => {
                     const cell = row.insertCell();
-                    cell.textContent = text;
-                    cell.className = 'px-4 py-3 whitespace-nowrap text-gray-700';
+                    cell.innerHTML = html;
+                    cell.className = 'px-6 py-4 whitespace-nowrap';
                 });
                 
                 const actionCell = row.insertCell();
-                actionCell.className = 'px-4 py-3 whitespace-nowrap text-right font-medium space-x-2';
+                actionCell.className = 'px-6 py-4 whitespace-nowrap text-right text-sm font-medium';
+                
+                const actionDiv = document.createElement('div');
+                actionDiv.className = 'flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity';
 
                 const editBtn = document.createElement('button');
                 editBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>';
-                editBtn.className = 'text-primary hover:text-indigo-800 p-1';
+                editBtn.className = 'p-1 text-slate-400 hover:text-indigo-600 transition-colors';
                 editBtn.onclick = () => openEditModal(trip.id);
-                actionCell.appendChild(editBtn);
+                actionDiv.appendChild(editBtn);
 
                 const deleteBtn = document.createElement('button');
                 deleteBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>';
-                deleteBtn.className = 'text-red-400 hover:text-red-600 p-1';
+                deleteBtn.className = 'p-1 text-slate-400 hover:text-rose-500 transition-colors';
                 deleteBtn.onclick = () => confirmDeleteTrip(trip.id);
-                actionCell.appendChild(deleteBtn);
+                actionDiv.appendChild(deleteBtn);
+                
+                actionCell.appendChild(actionDiv);
             });
         }
 
@@ -982,7 +1079,7 @@
 
             Elements.statTotalCost.textContent = totalCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
             Elements.statTotalDistance.textContent = totalDistance.toLocaleString();
-            Elements.statAvgMileage.innerHTML = `${avgMileage.toFixed(2)} <span class="text-sm font-normal text-gray-500">km/L</span>`;
+            Elements.statAvgMileage.innerHTML = `${avgMileage.toFixed(2)} <span class="text-sm font-bold text-slate-400">km/L</span>`;
         }
 
         function updateChart(trips) {
@@ -1008,13 +1105,21 @@
                     datasets: [{
                         label: 'Mileage (km/L)',
                         data: dataPoints,
-                        borderColor: '#4F46E5', 
-                        backgroundColor: 'rgba(79, 70, 229, 0.1)',
-                        tension: 0.3,
+                        borderColor: '#6366F1', 
+                        backgroundColor: (context) => {
+                            const ctx = context.chart.ctx;
+                            const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+                            gradient.addColorStop(0, 'rgba(99, 102, 241, 0.2)');
+                            gradient.addColorStop(1, 'rgba(99, 102, 241, 0)');
+                            return gradient;
+                        },
+                        tension: 0.4,
                         fill: true,
                         pointBackgroundColor: '#fff',
-                        pointBorderColor: '#4F46E5',
-                        pointRadius: 4
+                        pointBorderColor: '#6366F1',
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                        borderWidth: 2
                     }]
                 },
                 options: {
@@ -1022,9 +1127,20 @@
                     maintainAspectRatio: false,
                     plugins: { legend: { display: false } },
                     scales: {
-                        y: { beginAtZero: false, grid: { borderDash: [2, 4] } },
-                        x: { grid: { display: false } }
-                    }
+                        y: { 
+                            beginAtZero: false, 
+                            grid: { borderDash: [4, 4], color: '#F1F5F9' },
+                            ticks: { font: { family: "'Plus Jakarta Sans', sans-serif" } }
+                        },
+                        x: { 
+                            grid: { display: false },
+                            ticks: { font: { family: "'Plus Jakarta Sans', sans-serif" } }
+                        }
+                    },
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
                 }
             });
         }
@@ -1175,13 +1291,15 @@
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
+            // Show the install button in header
+            if(Elements.headerInstallBtn) Elements.headerInstallBtn.classList.remove('hidden');
         });
 
         // UI Binding
         Elements.googleLoginBtn.addEventListener('click', handleGoogleLogin);
         Elements.guestLoginBtn.addEventListener('click', handleGuestLogin);
-        Elements.emailLoginBtn.addEventListener('click', handleEmailLogin);
-        Elements.emailRegisterBtn.addEventListener('click', handleEmailRegister);
+        Elements.authActionBtn.addEventListener('click', handleAuthSubmit);
+        Elements.authToggleBtn.addEventListener('click', toggleAuthMode);
         
         Elements.logoutBtn.addEventListener('click', handleLogout);
         Elements.savePriceBtn.addEventListener('click', saveFuelPrice);
@@ -1190,7 +1308,8 @@
         Elements.exportBtn.addEventListener('click', exportToCSV);
         Elements.installPWABtn.addEventListener('click', promptInstallGuidance);
         Elements.clearDataBtn.addEventListener('click', clearAllData);
-        
+        Elements.headerInstallBtn.addEventListener('click', promptInstallGuidance); // New header listener
+
         Elements.alertCloseBtn.addEventListener('click', hideAlert);
         Elements.alertModal.addEventListener('click', (e) => {
             if (e.target === Elements.alertModal) hideAlert();

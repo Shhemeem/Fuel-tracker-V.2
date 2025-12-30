@@ -197,6 +197,13 @@
              </div>
              
              <div class="flex items-center space-x-4">
+                <!-- Sheets Upload Button (NEW) -->
+                <button id="sheets-settings-btn" class="p-2 text-slate-400 hover:text-emerald-500 hover:bg-emerald-50 rounded-lg transition-colors" title="Google Sheets Sync">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                </button>
+
                 <button id="header-install-btn" class="hidden p-2 text-slate-400 hover:text-primary hover:bg-indigo-50 rounded-lg transition-colors" title="Install App">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -275,13 +282,6 @@
                             </button>
                         </div>
                         <p id="current-price-display" class="mt-3 text-xs font-medium text-slate-400"></p>
-
-                        <!-- Google Sheet URL Input (NEW) -->
-                        <div class="mt-4 pt-4 border-t border-slate-100">
-                            <label class="block text-xs font-semibold text-slate-500 mb-1.5 ml-1">Google Sheets Webhook URL (Optional)</label>
-                            <input type="text" id="sheet-url" placeholder="https://script.google.com/macros/s/..." class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-xs text-slate-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-100 focus:border-primary transition-all">
-                            <p class="text-[10px] text-slate-400 mt-1 ml-1 leading-snug">Deploy your own Apps Script and paste the Web App URL here to sync data to your own personal sheet. <a href="#" class="text-indigo-500 hover:underline">Learn how</a>.</p>
-                        </div>
                     </div>
                 </div>
 
@@ -461,6 +461,33 @@
             </div>
         </div>
         
+        <!-- SHEETS CONFIG MODAL (NEW) -->
+        <div id="sheets-modal" class="fixed inset-0 bg-slate-900/50 z-[120] hidden flex items-center justify-center p-4 backdrop-blur-sm">
+            <div class="bg-white p-8 rounded-3xl shadow-2xl max-w-md w-full space-y-6 relative border border-white/20">
+                <h3 class="text-xl font-bold text-slate-800 border-b border-slate-100 pb-4">Google Sheets Sync</h3>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1.5 ml-1">Apps Script Webhook URL</label>
+                        <input type="text" id="sheet-url-input" placeholder="https://script.google.com/..." class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-100 focus:border-emerald-500 transition-all text-xs">
+                        <p class="text-[10px] text-slate-400 mt-2 leading-relaxed">
+                            Paste your Web App URL here to sync data to your personal Google Sheet. 
+                            <a href="#" class="text-primary hover:underline font-semibold">Setup Guide</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex justify-end space-x-3 pt-2">
+                    <button id="cancel-sheet-btn" class="py-2.5 px-5 bg-slate-100 text-slate-600 font-bold text-sm rounded-xl hover:bg-slate-200 transition">
+                        Close
+                    </button>
+                    <button id="save-sheet-btn" class="py-2.5 px-5 bg-emerald-500 text-white font-bold text-sm rounded-xl shadow-lg shadow-emerald-500/20 hover:bg-emerald-600 transition">
+                        Save Connection
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <!-- EDIT TRIP MODAL -->
         <div id="edit-trip-modal" class="fixed inset-0 bg-slate-900/50 z-[120] hidden flex items-center justify-center p-4 backdrop-blur-sm">
             <div class="bg-white p-8 rounded-3xl shadow-2xl max-w-md w-full space-y-6 relative border border-white/20">
@@ -573,10 +600,11 @@
             userNameDisplay: document.getElementById('user-name-display'),
             dbStatus: document.getElementById('db-status'),
             headerInstallBtn: document.getElementById('header-install-btn'), 
+            sheetsSettingsBtn: document.getElementById('sheets-settings-btn'), // New Button
 
             // Inputs
             fuelPriceInput: document.getElementById('fuel-price'),
-            sheetUrlInput: document.getElementById('sheet-url'), // NEW INPUT
+            sheetUrlInput: document.getElementById('sheet-url-input'), // NEW INPUT
             savePriceBtn: document.getElementById('save-price-btn'),
             currentPriceDisplay: document.getElementById('current-price-display'),
             tripDateInput: document.getElementById('trip-date'), 
@@ -622,6 +650,12 @@
             editAmount: document.getElementById('edit-amount-paid'),
             updateEditBtn: document.getElementById('update-edit-btn'),
             cancelEditBtn: document.getElementById('cancel-edit-btn'),
+
+            // Sheets Modal (NEW)
+            sheetsModal: document.getElementById('sheets-modal'),
+            sheetUrlInput: document.getElementById('sheet-url-input'),
+            saveSheetBtn: document.getElementById('save-sheet-btn'),
+            cancelSheetBtn: document.getElementById('cancel-sheet-btn'),
 
             // Setup Modal
             setupModal: document.getElementById('setup-modal'), 
@@ -916,11 +950,36 @@
             }
         }
 
+        async function saveSheetSettings() {
+            if (!currentUser) return;
+            const url = Elements.sheetUrlInput.value.trim();
+            
+            // Allow empty string to clear it, but valid URL if present
+            if (url && !url.includes('script.google.com')) {
+                return showAlert("Invalid URL", "Please enter a valid Google Apps Script Web App URL.");
+            }
+
+            const btn = Elements.saveSheetBtn;
+            btn.textContent = "Saving...";
+
+            try {
+                const settingsRef = doc(db, 'users', currentUser.uid, 'settings', 'config');
+                await setDoc(settingsRef, { sheetUrl: url }, { merge: true });
+                
+                currentSheetUrl = url; // Update local state immediately
+                Elements.sheetsModal.classList.add('hidden');
+                showAlert("Connected", "Your spreadsheet settings have been saved.");
+            } catch(e) {
+                handleDbError(e);
+            } finally {
+                btn.textContent = "Save Connection";
+            }
+        }
+
         async function saveFuelPrice() {
             if (!currentUser) return;
             const price = parseFloat(Elements.fuelPriceInput.value);
-            const sheetUrl = Elements.sheetUrlInput.value.trim();
-
+            
             if (isNaN(price) || price <= 0) return showAlert("Error", "Enter a valid price.");
 
             const btn = Elements.savePriceBtn;
@@ -931,11 +990,9 @@
                 
                 // Path: users/{uid}/settings/config
                 const settingsRef = doc(db, 'users', currentUser.uid, 'settings', 'config');
+                // Only save PRICE here, merge so we don't kill sheetUrl
                 await Promise.race([
-                    setDoc(settingsRef, { 
-                        price: price,
-                        sheetUrl: sheetUrl 
-                    }, { merge: true }),
+                    setDoc(settingsRef, { price: price }, { merge: true }),
                     timeout(5000)
                 ]);
                 
@@ -986,6 +1043,21 @@
 
             const liters = amountPaid / currentFuelPrice;
 
+            // --- FIX: Calculate Stats BEFORE DB Write ---
+            // We calculate here because once we await addDoc, the onSnapshot listener might 
+            // fire and update currentTrips to include the NEW trip, making distance 0.
+            let distance = 0;
+            let mileage = 0;
+            if (currentTrips.length > 0) {
+                // currentTrips is sorted Descending, so [0] is the previous highest reading
+                const lastOdo = parseFloat(currentTrips[0].odo); 
+                distance = currentOdo - lastOdo;
+                if (liters > 0) {
+                    mileage = distance / liters;
+                }
+            }
+            // --------------------------------------------
+
             Elements.tripLoading.classList.remove('hidden');
 
             try {
@@ -1007,22 +1079,24 @@
 
                 console.log("Trip Saved Successfully");
 
-                // 2. Prepare and Send to Google Sheets
-                let distance = 0;
-                let mileage = 0;
-                if (currentTrips.length > 0) {
-                    const lastOdo = currentTrips[0].odo; 
-                    distance = currentOdo - lastOdo;
-                    mileage = distance / liters;
-                }
-
+                // 2. Send to Google Sheets using the pre-calculated values
+                // We send multiple variations of keys to ensure compatibility with different scripts
                 const googleSheetsPayload = {
                     date: inputDate,
                     odo: currentOdo,
                     amount: amountPaid,
                     liters: liters,
                     distance: distance,
-                    mileage: mileage
+                    mileage: mileage,
+                    price: currentFuelPrice,
+                    // Capitalized keys to match common headers
+                    Date: inputDate,
+                    Odo: currentOdo,
+                    Amount: amountPaid,
+                    Liters: liters,
+                    Distance: distance,
+                    Mileage: mileage,
+                    Price: currentFuelPrice
                 };
                 
                 sendToGoogleSheets(googleSheetsPayload);
@@ -1356,6 +1430,23 @@
         Elements.installPWABtn.addEventListener('click', promptInstallGuidance);
         Elements.clearDataBtn.addEventListener('click', clearAllData);
         Elements.headerInstallBtn.addEventListener('click', promptInstallGuidance); // New header listener
+
+        // New Sheets Listeners
+        Elements.sheetsSettingsBtn.addEventListener('click', () => {
+            Elements.sheetsModal.classList.remove('hidden');
+            Elements.sheetsModal.classList.add('flex');
+        });
+        Elements.saveSheetBtn.addEventListener('click', saveSheetSettings);
+        Elements.cancelSheetBtn.addEventListener('click', () => {
+            Elements.sheetsModal.classList.remove('flex');
+            Elements.sheetsModal.classList.add('hidden');
+        });
+        Elements.sheetsModal.addEventListener('click', (e) => {
+            if(e.target === Elements.sheetsModal) {
+                Elements.sheetsModal.classList.remove('flex');
+                Elements.sheetsModal.classList.add('hidden');
+            }
+        });
 
         Elements.alertCloseBtn.addEventListener('click', hideAlert);
         Elements.alertModal.addEventListener('click', (e) => {
